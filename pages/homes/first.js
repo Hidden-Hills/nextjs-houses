@@ -8,11 +8,13 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import TextField from '@mui/material/TextField';
 import StarIcon from '@mui/icons-material/Star';
 import LaunchIcon from '@mui/icons-material/Launch';
 import HelpIcon from '@mui/icons-material/Help';
 import { createTheme } from '@mui/material/styles';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'react-calendar/dist/Calendar.css';
 
 function houseOne(){
@@ -104,17 +106,14 @@ function ReviewsModal(){
     );
 }
 
-function SetDate (){
-    return(
-        <div>
-        <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-        <Box component="form" sx={{'& > :not(style)': { m: 1, width: '14ch' }, }} noValidate autoComplete="off"><TextField label="Start" id="outlined-basic" variant="outlined" /></Box>
-        <Box component="form" sx={{'& > :not(style)': { m: 1, width: '10ch' }, }} noValidate autoComplete="off"><TextField label="End" id="outlined-basic" variant="outlined" /></Box>
-        </Stack>
-        </div>
-    )
+function SetDate() {
+    return (
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker label="Start Date" id="start_date" />
+        <DatePicker label="End Date"  id="end_date"/>
+      </LocalizationProvider>
+    );
 }
-
 
 class HouseOneInfo extends React.Component{
 

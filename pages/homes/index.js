@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import Link from "next/link"
 import axios from "axios"
 import StarIcon from '@mui/icons-material/Star';
@@ -8,13 +8,47 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import CastleOutlinedIcon from '@mui/icons-material/CastleOutlined';import Modal from '@mui/material/Modal';
+import { createTheme } from '@mui/material/styles';
+import IconButton from '@mui/material/Button';
 
 
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 200,
+  bgcolor: 'background.paper',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: 4,
+};
+const theme = createTheme({
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    primary: {
+      main: '#212121',
+      darker: '#053e85',
+    },
+    neutral: {
+      main: '#27272a',
+      contrastText: '#fff',
+    },
+  },
+});
 
 function houses (){
     return(
         <div>
+            <Grid container direction="row" justifyContent="center" alignItems="center" item xs="auto">
+              <TaskBar/>
+              </Grid>
             <Grid container direction="row" justifyContent="center" alignItems="center">
             <Grid item xs="auto">
                 <HouseOne/>
@@ -29,10 +63,42 @@ function houses (){
                 <HouseFour/>
             </Grid>
             </Grid>
+        
         </div>
     )
 }
 
+function TaskBar (){
+  return(
+    <div>
+      <Grid  container direction="row" justifyContent="center" alignItems="center" item xs="auto" >
+      <MansionFilter/>
+      <MansionFilter/>
+      <MansionFilter/>
+      <AvatarChip/>
+      </Grid>   
+    </div>
+  )
+}
+
+function AvatarChip() {
+  return (
+    <div className="p-3 mw-sm">
+      <div className="place-items-start">
+      <Chip avatar={<Avatar>U</Avatar>} label="User"/>
+      </div>
+    </div>
+  );
+}
+
+function MansionFilter(){
+  return(
+    <div className="p-22">      
+      <IconButton theme={theme} color="neutral"><CastleOutlinedIcon/></IconButton>
+      <p>Mansions</p>
+    </div>
+  )
+}
 
 class HouseOne extends React.Component{
 
@@ -277,13 +343,3 @@ class HouseFour extends React.Component{
   }
 }
 export default houses
-
-/*
-This info goes on the booking page.
-
-<p className="font-sans text-lg font-medium text-center">{this.state.houses[0].description}</p>
-<p className="font-sans text-lg font-medium text-center">{this.state.houses[0].sqft} sqft</p>
-<p className="font-sans text-lg font-medium text-center">{this.state.houses[0].maxGuests} guest max.</p>
-<p className="font-sans text-lg font-medium text-center">{this.state.houses[0].bedRooms} bd</p>
-<p className="font-sans text-lg font-medium text-center">{this.state.houses[0].bathRooms} br</p>
- */
