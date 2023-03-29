@@ -5,18 +5,20 @@ import Stack from '@mui/material/Stack';
 import React from "react"
 import CardMedia from '@mui/material/CardMedia';
 
-import Image from 'next/image'
-
 
 function Main(){
     return(
-        <div className="flex justify-center items-center h-screen">
+        <div>
+            <div className="mx-auto pt-72">
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
             <Book/>
             <Calendar/>
             <Secure/>
             </Stack>
+            <LinkBtn/>
         </div>
+        </div>
+
     )
 }
 
@@ -67,4 +69,13 @@ function Secure(){
         </div>
     )
 }
+
+function LinkBtn(){
+    return(
+        <div className="text-center pt-8">
+            <Link href="/homes"><button className="rounded-full p-5 bg-green-300">Start Booking</button></Link>
+        </div>
+    )
+}
+
 export default Main

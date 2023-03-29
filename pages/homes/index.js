@@ -72,9 +72,6 @@ function TaskBar (){
   return(
     <div>
       <Grid  container direction="row" justifyContent="center" alignItems="center" item xs="auto" >
-      <MansionFilter/>
-      <MansionFilter/>
-      <MansionFilter/>
       <AvatarChip/>
       </Grid>   
     </div>

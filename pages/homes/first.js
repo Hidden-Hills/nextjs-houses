@@ -7,6 +7,7 @@ import { Carousel } from 'react-responsive-carousel';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import StarIcon from '@mui/icons-material/Star';
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -19,24 +20,24 @@ import 'react-calendar/dist/Calendar.css';
 
 function houseOne(){
     return(
-        <div style={{padding: '10px'}}>
+        <div style={{padding: '20px'}}>
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '500px', height: 'auto'}}>
+            <Paper elevation={2} sx={{width: '100%', maxWidth: '896px', height: 'auto', minHeight: '655px'}}>
             <HouseOneInfo/>
             </Paper>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', minHeight: '540px', height: 'auto'}}  className="text-center bg-gray-50 text-white py-2 px-4 space-y-4">
-            <div className="space-y-4">
+            <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', minHeight: '655px', height: 'auto'}}  className="text-center bg-gray-50 text-white py-2 px-4 space-y-4">
+            <div className="space-y-4 ">
             <SetDate/>
             <div className="text-center bg-zinc-300 text-black py-2 px-4 space-y-4 rounded-full">Book</div>
             <div className="text-center text-stone-800">Fees<BasicModal/></div>
             </div>
             <div className="grid grid-cols-1 divide-y">
             <div className="text-center text-stone-800">$10,500<p class="text-center pb-5">$500</p></div>
-            <div className="text-center bg-zinc-300 text-black py-2 px-4 space-y-4 rounded-full">Total<p class="text-center">$11,000</p></div>
-            </div>
+            <div className="text-center bg-zinc-300 text-black py-2 px-4 space-y-4 rounded-full">Total<p class="text-center">$11,000</p></div></div>
+            <HouseOneReviews/>
             </Paper>
             </Stack>
-            <HouseOneReviews/>
+            
         </div>
     )
 }
@@ -94,7 +95,7 @@ function ReviewsModal(){
   
     return (
       <div>
-        <IconButton onClick={handleOpen} theme={theme} color="primary"><LaunchIcon/></IconButton>
+        <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">1 Review</button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
           <Box sx={style}>
             <div className="grid grid-cols-1 divide-y">
@@ -151,12 +152,14 @@ class HouseOneInfo extends React.Component{
       }
       if(this.state.houses[0]){
         return(
-        <div className="p-4 flex flex-row justify-center items-center"> 
-        <div className="grid grid-cols-1 divide-y max-w-sm	">  
+        <div className=""> 
+        <div className="grid grid-cols-1 divide-y max-w-4xl">  
             <NextJsCarousel/>
             <p className="font-sans text-lg font-small text-center">{this.state.houses[0].description}</p>
             </div>   
+            
         </div>
+        
         )
     }
   }
@@ -200,13 +203,11 @@ class HouseOneReviews extends React.Component{
           <div className="p-4"> 
           <div className="">  
           <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-          <Paper elevation={0} sx={{width: '100%', maxWidth: '500px', height: 'auto', padding: '1px'}}>
-          </Paper>
-          <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', maxHeight: '250px', height: 'auto'}}  className="text-center  text-black py-2 px-2">
+          <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', maxHeight: '400px', height: 'auto'}}  className="text-center text-black py-2 px-2">
             <div className="space-y-4"></div>
-            <div className="grid grid-cols-1 divide-y"/>
+            <div className=""/>
             <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
-            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}><StarIcon/><p className="px-2 text-xl">5.0</p> <Divider color="#121212" orientation="vertical" flexItem/><p className="px-2 text-xl">1 Review</p><ReviewsModal/></div>  
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}><StarIcon/><p className="px-2 text-xl">5.0</p> <Divider color="#121212" orientation="vertical" flexItem/><ReviewsModal/></div>  
             </Stack>
             </Paper>
           </Stack> 
@@ -220,35 +221,14 @@ class HouseOneReviews extends React.Component{
 class NextJsCarousel extends React.Component{
     render(){
         return(
-            <div className="flex flex-row justify-center items-center">
-            <Paper elevation={0} sx={{width: '100%', maxWidth: '450px', height: 'auto'}}> 
-              <Carousel>
-                  <div>
+            <div className="flex flex-row justify-center items-center ">
+            <Paper className="max-w-4xl" elevation={0} sx={{width: '100%', height: 'auto'}}> 
+       
+                <div>
                   <img src="/images/homeOne1.png" alt="image1"/>
-                  </div>
-                  <div>
-                  <img src="/images/homeOne2.png" alt="image2"/>
-                  </div>
-                  <div>
-                  <img src="/images/homeOne3.png" alt="image3"/>
-                  </div>
-                  <div>
-                  <img src="/images/homeOne4.png" alt="image4"/>
-                  </div>
-                  <div>
-                  <img src="/images/homeOne5.png" alt="image5"/>
-                  </div>
-                  <div>
-                  <img src="/images/homeOne6.png" alt="image6"/>
-                  </div>
-                  <div>
-                  <img src="/images/homeOne7.png" alt="image7"/>
-                  </div>
-                  <div>
-                  <img src="/images/homeOne8.png" alt="image8"/>
-                  </div>
-              </Carousel>
-              </Paper>
+                </div>
+    
+            </Paper>
             </div>
         )
     }
