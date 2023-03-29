@@ -7,10 +7,9 @@ import { Carousel } from 'react-responsive-carousel';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/Button';
-import Button from '@mui/material/Button';
+import CollectionsIcon from '@mui/icons-material/Collections';
 import Divider from '@mui/material/Divider';
 import StarIcon from '@mui/icons-material/Star';
-import LaunchIcon from '@mui/icons-material/Launch';
 import HelpIcon from '@mui/icons-material/Help';
 import { createTheme } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -22,7 +21,7 @@ function houseOne(){
     return(
         <div style={{padding: '20px'}}>
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '896px', height: 'auto', minHeight: '655px'}}>
+            <Paper elevation={2} sx={{width: '100%', maxWidth: '800px', height: 'auto', minHeight: '655px'}}>
             <HouseOneInfo/>
             </Paper>
             <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', minHeight: '655px', height: 'auto'}}  className="text-center bg-gray-50 text-white py-2 px-4 space-y-4">
@@ -58,16 +57,27 @@ const theme = createTheme({
     },
 });
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderRadius: '10px',
-    boxShadow: 24,
-    p: 4,
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: 4,
 };
+const pictureBox = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 600,
+  bgcolor: 'background.paper',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: 4,
+}
 
 function FeesModal() {
     const [open, setOpen] = React.useState(false);
@@ -115,11 +125,11 @@ function HousePhotosModal(){
 
   return(
     <div>
-      <button className="p-2 text-decoration-line: underline text-lg text-black" onClick={handleOpen} theme={theme} color="primary">See all Photos</button>
+      <IconButton className="p-2 text-small text-black" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none", fontWeight: 'light'}}>All Photos<CollectionsIcon/></IconButton>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
-        <Box sx={style}>
+        <Box elevation={0} sx={pictureBox}>
           <div className="grid grid-cols-1 divide-y">
-            <div className="text-center" sx={{mt: 2}}>Placeholder for Photos</div>
+            <NextJsCarousel/>
           </div>
         </Box>
       </Modal>
@@ -134,6 +144,20 @@ function SetDate() {
         <DatePicker label="End Date"  id="end_date"/>
       </LocalizationProvider>
     );
+}
+
+function increment(){
+  let nightFee = 1000;
+  nightFee = nightFee + 1000;
+  if(nightFee > 7000) return false
+  document.getElementById("incrementFee").innerHTML = nightFee;
+}
+
+function decrement(){
+  let nightFee = 1000
+  nightFee = nightFee - 1000
+  if(nightFee < 0) return false
+  document.getElementById("decrementFee").innerHTML = nightFee;
 }
 
 class HouseOneInfo extends React.Component{
@@ -174,8 +198,8 @@ class HouseOneInfo extends React.Component{
         return(
         <div className=""> 
         <div className="grid grid-cols-1 divide-y max-w-4xl">  
-            <NextJsCarousel/>
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[0].description}</p>
+            <MainPicture/>
+            <p className="font-sans text-lg font-small text-center">{this.state.houses[1].description}</p>
             </div>   
         </div>
         )
@@ -236,16 +260,37 @@ class HouseOneReviews extends React.Component{
     }
 }
 
+function MainPicture(){
+  return(
+    <div className="flex flex-row justify-center items-center ">
+    <Paper className="flex flex-row justify-center items-center " elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '800px'}}> 
+        <div>
+          <img src="/images/homeOne1.webp" alt="image1"/>
+        </div>
+    </Paper>
+    </div>
+)
+}
+
 class NextJsCarousel extends React.Component{
     render(){
         return(
             <div className="flex flex-row justify-center items-center ">
-            <Paper className="max-w-4xl" elevation={0} sx={{width: '100%', height: 'auto'}}> 
-       
+            <Paper className="flex flex-row justify-center items-center  max-w-4xl" elevation={0} sx={{width: '100%', height: 'auto'}}> 
+            <Carousel>
                 <div>
-                  <img src="/images/homeOne1.png" alt="image1"/>
+                  <img src="/images/homeOne1.webp" alt="image1"/>
                 </div>
-    
+                <div>
+                  <img src="/images/homeOne1.webp" alt="image1"/>
+                </div>
+                <div>
+                  <img src="/images/homeOne1.webp" alt="image1"/>
+                </div>
+                <div>
+                  <img src="/images/homeOne1.webp" alt="image1"/>
+                </div>
+                </Carousel>
             </Paper>
             </div>
         )
