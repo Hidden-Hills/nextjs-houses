@@ -29,12 +29,13 @@ function houseOne(){
             <div className="space-y-4 ">
             <SetDate/>
             <div className="text-center bg-zinc-300 text-black py-2 px-4 space-y-4 rounded-full">Book</div>
-            <div className="text-center text-stone-800">Fees<BasicModal/></div>
+            <div className="text-center text-stone-800">Fees<FeesModal/></div>
             </div>
             <div className="grid grid-cols-1 divide-y">
             <div className="text-center text-stone-800">$10,500<p class="text-center pb-5">$500</p></div>
             <div className="text-center bg-zinc-300 text-black py-2 px-4 space-y-4 rounded-full">Total<p class="text-center">$11,000</p></div></div>
             <HouseOneReviews/>
+            <HousePhotosModal/>
             </Paper>
             </Stack>
             
@@ -68,7 +69,7 @@ const style = {
     p: 4,
 };
 
-function BasicModal() {
+function FeesModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -105,6 +106,25 @@ function ReviewsModal(){
         </Modal>
       </div>
     );
+}
+
+function HousePhotosModal(){
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return(
+    <div>
+      <button className="p-2 text-decoration-line: underline text-lg text-black" onClick={handleOpen} theme={theme} color="primary">See all Photos</button>
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
+        <Box sx={style}>
+          <div className="grid grid-cols-1 divide-y">
+            <div className="text-center" sx={{mt: 2}}>Placeholder for Photos</div>
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  )
 }
 
 function SetDate() {
@@ -157,9 +177,7 @@ class HouseOneInfo extends React.Component{
             <NextJsCarousel/>
             <p className="font-sans text-lg font-small text-center">{this.state.houses[0].description}</p>
             </div>   
-            
         </div>
-        
         )
     }
   }
