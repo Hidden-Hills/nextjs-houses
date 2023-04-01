@@ -67,7 +67,7 @@ function houses (){
 function TaskBar (){
   return(
     <div>
-      <Grid  container direction="row" justifyContent="center" alignItems="center" item xs="auto" >
+      <Grid container direction="row" justifyContent="center" alignItems="center" item xs="auto" >
       <AvatarChip/>
       </Grid>   
     </div>
@@ -82,15 +82,6 @@ function AvatarChip() {
       </div>
     </div>
   );
-}
-
-function MansionFilter(){
-  return(
-    <div className="p-22">      
-      <IconButton theme={theme} color="neutral"><CastleOutlinedIcon/></IconButton>
-      <p>Mansions</p>
-    </div>
-  )
 }
 
 class HouseOne extends React.Component{
@@ -134,18 +125,18 @@ class HouseOne extends React.Component{
             <Card sx={{ maxWidth: 350, minWidth: 350 }}>
         <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeOne1.webp" title="Picture" alt="pic"/>
         <CardContent>
-          <Typography gutterBottom className="font-sans text-lg font-medium text-center">
-          <p className="font-sans text-lg font-medium text-center">{this.state.houses[2].title}</p>
-          <p className="font-sans text-lg font-medium text-center">{this.state.houses[2].location}</p>
+          <Typography gutterBottom className="text-lg text-medium text-center">
+          <p className="text-lg text-medium text-center">{this.state.houses[2].title}</p>
+          <p className="text-lg text-medium text-center">{this.state.houses[2].location}</p>
           </Typography>
-          <Typography className="font-sans text-lg font-medium text-center">
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[2].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[2].price}</p>
+          <Typography className="text-lg text-medium text-center">
+            <p className="text-lg text-small text-center">{this.state.houses[2].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
+            <p className="text-lg text-small text-center">{this.state.houses[2].price}</p>
             
           </Typography>
-          <Typography className="font-sans text-lg font-medium text-center">
+          <Typography className="text-lg text-medium text-center">
             <p>‎</p>
-            <Link href='./homes/first'><button type="button" className="font-sans text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 rounded-full">Book Home</button></Link>
+            <Link href='./homes/first'><button type="button" className="text-white bg-gradient-to-r from-pink-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Home</button></Link>
             </Typography>
         </CardContent>  
       </Card>
@@ -196,18 +187,18 @@ class HouseTwo extends React.Component{
           <Card sx={{ maxWidth: 350, minWidth: 350 }}>
       <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeTwo.webp" title="Picture" alt="pic"/>
       <CardContent>
-        <Typography gutterBottom className="font-sans text-lg font-medium text-center">
-        <p className="font-sans text-lg font-medium text-center">{this.state.houses[0].title}</p>
-        <p className="font-sans text-lg font-medium text-center">{this.state.houses[0].location}</p>
+        <Typography gutterBottom className="text-lg text-medium text-center">
+        <p className="text-lg text-medium text-center">{this.state.houses[0].title}</p>
+        <p className="text-lg text-medium text-center">{this.state.houses[0].location}</p>
         </Typography>
-        <Typography className="font-sans text-lg font-medium text-center">
-          <p className="font-sans text-lg font-small text-center">{this.state.houses[0].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-          <p className="font-sans text-lg font-small text-center">{this.state.houses[0].price}</p>
+        <Typography className="text-lg text-medium text-center">
+          <p className="text-lg text-small text-center">{this.state.houses[0].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
+          <p className="text-lg text-small text-center">{this.state.houses[0].price}</p>
           
         </Typography>
-        <Typography className="font-sans text-lg font-medium text-center">
+        <Typography className="text-lg text-medium text-center">
           <p>‎</p>
-          <Link href='./homes/second'><button type="button" className="font-sans text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 rounded-full">Book Home</button></Link>
+          <Link href='./homes/second'><button type="button" className="text-white bg-gradient-to-r from-pink-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Home</button></Link>
           </Typography>
       </CardContent>  
     </Card>
@@ -258,18 +249,18 @@ class HouseThree extends React.Component{
             <Card sx={{maxWidth: 350, minWidth: 350 }}>
         <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeThree.webp" title="Picture" alt="pic"/>
         <CardContent>
-          <Typography gutterBottom className="font-sans text-lg font-medium text-center">
-          <p className="font-sans text-lg font-medium text-center">{this.state.houses[1].title}</p>
-          <p className="font-sans text-lg font-medium text-center">{this.state.houses[1].location}</p>
+          <Typography gutterBottom className="text-lg text-medium text-center">
+          <p className="text-lg text-medium text-center">{this.state.houses[1].title}</p>
+          <p className="text-lg text-medium text-center">{this.state.houses[1].location}</p>
           </Typography>
-          <Typography className="font-sans text-lg font-medium text-center">
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[1].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[1].price}</p>
+          <Typography className="text-lg text-medium text-center">
+            <p className="text-lg text-small text-center">{this.state.houses[1].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
+            <p className="text-lg text-small text-center">{this.state.houses[1].price}</p>
             
           </Typography>
-          <Typography className="font-sans text-lg font-medium text-center">
+          <Typography className="text-lg text-medium text-center">
             <p>‎</p>
-            <Link href='./homes/third'><button type="button" className="font-sans text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 rounded-full">Book Home</button></Link>
+            <Link href='./homes/third'><button type="button" className="text-white bg-gradient-to-r from-pink-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Home</button></Link>
             </Typography>
         </CardContent>  
       </Card>
@@ -320,17 +311,17 @@ class HouseFour extends React.Component{
             <Card sx={{ maxWidth: 345 }}>
         <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeFour.png" title="Picture" alt="pic"/>
         <CardContent>
-          <Typography gutterBottom className="font-sans text-lg font-medium text-center">
-          <p className="font-sans text-lg font-medium text-center">{this.state.houses[3].title}</p>
+          <Typography gutterBottom className="text-sans text-lg text-medium text-center">
+          <p className="text-sans text-lg text-medium text-center">{this.state.houses[3].title}</p>
           </Typography>
-          <Typography className="font-sans text-lg font-medium text-center">
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[3].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[3].price}</p>
+          <Typography className="text-sans text-lg text-medium text-center">
+            <p className="text-sans text-lg text-small text-center">{this.state.houses[3].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
+            <p className="text-sans text-lg text-small text-center">{this.state.houses[3].price}</p>
             
           </Typography>
-          <Typography className="font-sans text-lg font-medium text-center">
+          <Typography className="text-sans text-lg text-medium text-center">
             <p>‎</p>
-            <Link href='./homes/fourth'><button type="button" className="font-sans text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 rounded-full">Book Home</button></Link>
+            <Link href='./homes/fourth'><button type="button" className="text-sans text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  focus:ring-blue-300  text-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 rounded-full">Book Home</button></Link>
             </Typography>
         </CardContent>  
       </Card>

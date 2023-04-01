@@ -4,7 +4,11 @@ module.exports = {
   "./components/**/*.{js,ts,jsx,tsx}",
   "./node_modules/tw-daterange/dist/index.esm.js",],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Open: ['Open Sans', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

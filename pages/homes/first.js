@@ -11,33 +11,47 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import Divider from '@mui/material/Divider';
 import StarIcon from '@mui/icons-material/Star';
 import HelpIcon from '@mui/icons-material/Help';
+import Grid from '@mui/material/Grid';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { createTheme } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'react-calendar/dist/Calendar.css';
+import dayjs from 'dayjs';
 
 function houseOne(){
     return(
+      
         <div style={{padding: '20px'}}>
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '800px', height: 'auto', minHeight: '655px'}}>
+            <Paper elevation={2} sx={{width: '100%', maxWidth: '780px', height: 'auto', minHeight: '655px'}} className="bg-white">
             <HouseOneInfo/>
             </Paper>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', minHeight: '655px', height: 'auto'}}  className="text-center bg-gray-50 text-white py-2 px-4 space-y-4">
+            <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', minHeight: '300px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
             <div className="space-y-4 ">
             <SetDate/>
-            <div className="text-center bg-zinc-300 text-black py-2 px-4 space-y-4 rounded-full">Book</div>
-            <div className="text-center text-stone-800">Fees<FeesModal/></div>
+            <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Reserve Now</button>
+            <div className="text-center text-stone-800 ">Fees<FeesModal/></div>
             </div>
-            <div className="grid grid-cols-1 divide-y">
-            <div className="text-center text-stone-800">$10,500<p class="text-center pb-5">$500</p></div>
-            <div className="text-center bg-zinc-300 text-black py-2 px-4 space-y-4 rounded-full">Total<p class="text-center">$11,000</p></div></div>
-            <HouseOneReviews/>
-            <HousePhotosModal/>
+            <div className="flex space-x-28">
+            <div className="text-black font-light	text-center text-decoration-line: underline">$1,409 x 5 nights</div>
+            <div className="text-black text-medium">$7,013</div>
+            </div>
+            <div className="flex space-x-40">
+            <div className="text-black font-light	text-center text-decoration-line: underline">Cleaning fee</div>
+            <div className="text-black text-medium">$375</div>
+            </div><div className="flex space-x-32">
+            <div className="text-black font-light	text-center text-decoration-line: underline">XYZ service fee</div>
+            <div className="text-black text-medium">$1,043</div>
+            </div>
+            <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9'}} orientation="horizontal" flexItem/>
+            <div className="flex">
+            <div className="text-black text-center font-semibold">Total before taxes</div>
+            <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$8,431</div>
+            </div>
             </Paper>
-            </Stack>
-            
+            </Stack>    
         </div>
     )
 }
@@ -67,6 +81,17 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const descriptionStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  maxWidth: 700,
+  bgcolor: 'background.paper',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: 4,
+}
 const pictureBox = {
   position: 'absolute',
   top: '50%',
@@ -78,6 +103,7 @@ const pictureBox = {
   boxShadow: 24,
   p: 4,
 }
+const tomorrow = dayjs().add(1, 'day');
 
 function FeesModal() {
     const [open, setOpen] = React.useState(false);
@@ -110,7 +136,7 @@ function ReviewsModal(){
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
           <Box sx={style}>
             <div className="grid grid-cols-1 divide-y">
-            <div className="text-center" sx={{ mt: 2 }}>Donovan: Amazing stay, definetly enjoyed it here!</div>
+            <div className="text-center " sx={{ mt: 2 }}>Donovan: Amazing stay, definetly enjoyed it here!</div>
             </div>
           </Box>
         </Modal>
@@ -137,28 +163,39 @@ function HousePhotosModal(){
   )
 }
 
-function SetDate() {
+function FullHomeDescription(){
+  const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+  
     return (
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker label="Start Date" id="start_date" />
-        <DatePicker label="End Date"  id="end_date"/>
-      </LocalizationProvider>
+      <div>
+        <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">See More<ArrowForwardIosIcon/></button>
+        <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
+          <Box sx={descriptionStyle}>
+            <div className="grid grid-cols-1 space-y-4">
+            <div className="text-left text-2xl font-semibold" sx={{ mt: 2 }}>About this space</div>
+            <div className="text-left" sx={{ mt: 2 }}>Reverse pandemic blues at this retreat charged 4 bedroom haven with an authentic Finnish sauna, canal-front jacuzzi consciousness, paddleboards, a tandem kayak, replete comfy zones to lazily exchange conversation. The tranquility of the canal will replace all Debbie downer thoughts with a symphony of luminous relaxation, bound to bedazzle wary minds and hearts.</div>
+            <div className="text-left text-xl font-semibold" sx={{ mt: 2}}>The space</div>
+            <div className="text-left text-medium" sx={{ mt: 2 }}>Tastefully furnished on the inside, this villa features 4 bedrooms with king or queen size beds, 2.5 bathrooms, two tuned grand pianos for dueling it out, and within a few minute paddle to the bay. After a few hours here you’ll forget about any invisible enemy that has destroyed the basic hug! Great for team building and corporate or family retreats! No parties allowed. Long-term rental an option.</div>
+            </div>
+          </Box>
+        </Modal>
+      </div>
     );
 }
 
-function increment(){
-  let nightFee = 1000;
-  nightFee = nightFee + 1000;
-  if(nightFee > 7000) return false
-  document.getElementById("incrementFee").innerHTML = nightFee;
+function SetDate() {
+    return (
+      <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker label="Start Date" id="start_date" disablePast="true"/>
+        <DatePicker label="End Date"  id="end_date" disablePast="true" minDate={tomorrow} />
+      </LocalizationProvider>
+      </Stack>
+    );
 }
 
-function decrement(){
-  let nightFee = 1000
-  nightFee = nightFee - 1000
-  if(nightFee < 0) return false
-  document.getElementById("decrementFee").innerHTML = nightFee;
-}
 
 class HouseOneInfo extends React.Component{
 
@@ -197,10 +234,10 @@ class HouseOneInfo extends React.Component{
       if(this.state.houses[0]){
         return(
         <div className=""> 
-        <div className="grid grid-cols-1 divide-y max-w-4xl">  
-            <MainPicture/>
-            <p className="font-sans text-lg font-small text-center">{this.state.houses[1].description}</p>
-            </div>   
+          <MainPicture/>
+          <Paper elevation={0} sx={{width: '100%', maxWidth: '400px', height: 'auto', minHeight: '400', margin: 'auto'}}>
+          <p className=" text-lg font-small text-center max-w-lg	m-auto ">{this.state.houses[2].description}...<p className=" text-lg font-small text-decoration-line: underline"><FullHomeDescription/></p></p>
+          </Paper>
         </div>
         )
     }
@@ -267,9 +304,35 @@ function MainPicture(){
         <div>
           <img src="/images/homeOne1.webp" alt="image1"/>
         </div>
+         
     </Paper>
     </div>
 )
+}
+
+function PictureGrid(){
+  return(
+    <div>
+      <Grid container direction="row" rowSpacing={1}  justifyContent="center" alignItems="center" item xs="auto">
+      <Stack direction="row" spacing={2} className="p-4" alignItems="center" justifyContent="flex-end">
+      <Grid item xs='auto'>
+          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
+      </Grid>
+      <Grid item xs='auto'>
+          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
+      </Grid>
+      </Stack>
+      <Stack direction="row" spacing={2} justifyContent="flex-end" alignItems="center">
+      <Grid item xs='auto'>
+          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
+      </Grid>
+      <Grid item xs='auto'>
+          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
+      </Grid>
+      </Stack>
+      </Grid>
+    </div>
+  )
 }
 
 class NextJsCarousel extends React.Component{
