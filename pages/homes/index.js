@@ -121,27 +121,26 @@ class HouseOne extends React.Component{
       if(this.state.houses[0]){
         
         return(
-            <div className="p-4">
-            <Card sx={{ maxWidth: 350, minWidth: 350 }}>
-        <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeOne1.webp" title="Picture" alt="pic"/>
+        <div className="p-4">
+        <Link href='./homes/first'><button type="button" >
+        <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeOne1.webp" title="Picture" alt="pic"/>
         <CardContent>
-          <Typography gutterBottom className="text-lg text-medium text-center">
-          <p className="text-lg text-medium text-center">{this.state.houses[2].title}</p>
-          <p className="text-lg text-medium text-center">{this.state.houses[2].location}</p>
-          </Typography>
-          <Typography className="text-lg text-medium text-center">
-            <p className="text-lg text-small text-center">{this.state.houses[2].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-            <p className="text-lg text-small text-center">{this.state.houses[2].price}</p>
-            
-          </Typography>
-          <Typography className="text-lg text-medium text-center">
-            <p>‎</p>
-            <Link href='./homes/first'><button type="button" className="text-white bg-gradient-to-r from-pink-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Home</button></Link>
-            </Typography>
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+        <p className="text-medium text-center">{this.state.houses[2].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[2].ratings}</p>
+        </Stack>
+        <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+          <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[2].price}</p>  
+        </Stack>
         </CardContent>  
-      </Card>
+        </Card>
+        </button>
+        </Link>
         </div>
-        )
+      )
     }
   }
 }
@@ -184,25 +183,24 @@ class HouseTwo extends React.Component{
         
         return(
           <div className="p-4">
-          <Card sx={{ maxWidth: 350, minWidth: 350 }}>
-          <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeTwo.webp" title="Picture" alt="pic"/>
-          <CardContent>
-          <Typography gutterBottom className="text-lg text-medium text-center">
-          <p className="text-lg text-medium text-center">{this.state.houses[0].title}</p>
-          <p className="text-lg text-medium text-center">{this.state.houses[0].location}</p>
-          </Typography>
-          <Typography className="text-lg text-medium text-center">
-          <p className="text-lg text-small text-center">{this.state.houses[0].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-          <p className="text-lg text-small text-center">{this.state.houses[0].price}</p>
-          
-          </Typography>
-          <Typography className="text-lg text-medium text-center">
-          <p>‎</p>
-          <Link href='./homes/second'><button type="button" className="text-white bg-gradient-to-r from-pink-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Home</button></Link>
-          </Typography>
-          </CardContent>  
-          </Card>
-      </div>
+        <Link href='./homes/first'><button type="button" >
+        <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeTwo.webp" title="Picture" alt="pic"/>
+        <CardContent>
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+        <p className="text-medium text-center">{this.state.houses[0].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[0].ratings}</p>
+        </Stack>
+        <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+          <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[0].price}</p>  
+        </Stack>
+        </CardContent>  
+        </Card>
+        </button>
+        </Link>
+        </div>
       )
     }
   }
@@ -243,28 +241,26 @@ class HouseThree extends React.Component{
         )
       }
       if(this.state.houses[0]){
-        
         return(
-            <div className="p-4">
-            <Card sx={{maxWidth: 350, minWidth: 350 }}>
-        <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeThree.webp" title="Picture" alt="pic"/>
-        <CardContent>
-          <Typography gutterBottom className="text-lg text-medium text-center">
-          <p className="text-lg text-medium text-center">{this.state.houses[1].title}</p>
-          <p className="text-lg text-medium text-center">{this.state.houses[1].location}</p>
-          </Typography>
-          <Typography className="text-lg text-medium text-center">
-            <p className="text-lg text-small text-center">{this.state.houses[1].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-            <p className="text-lg text-small text-center">{this.state.houses[1].price}</p>
-            
-          </Typography>
-          <Typography className="text-lg text-medium text-center">
-            <p>‎</p>
-            <Link href='./homes/third'><button type="button" className="text-white bg-gradient-to-r from-pink-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Home</button></Link>
-            </Typography>
-        </CardContent>  
-      </Card>
-        </div>
+          <div className="p-4">
+          <Link href='./homes/first'><button type="button" >
+          <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+          <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeThree.webp" title="Picture" alt="pic"/>
+          <CardContent>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+          <p className="text-medium text-center">{this.state.houses[1].location}</p>
+          <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[1].ratings}</p>
+          </Stack>
+          <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+            <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+            <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
+            <p className="text-small text-center px-0.5 font-medium">{this.state.houses[1].price}</p>  
+          </Stack>
+          </CardContent>  
+          </Card>
+          </button>
+          </Link>
+          </div>
         )
     }
   }
