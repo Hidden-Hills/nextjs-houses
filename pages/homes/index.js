@@ -46,9 +46,9 @@ const theme = createTheme({
 function houses (){
     return(
         <div>
-            <Grid container direction="row" justifyContent="center" alignItems="center" item xs="auto">
-              <TaskBar/>
-            </Grid>
+          <Grid container direction="row" justifyContent="center" alignItems="center">
+            <TaskBar/>
+          </Grid>
             <Grid container direction="row" justifyContent="center" alignItems="center">
             <Grid item xs="auto">
                 <HouseOne/>
@@ -185,23 +185,23 @@ class HouseTwo extends React.Component{
         return(
           <div className="p-4">
           <Card sx={{ maxWidth: 350, minWidth: 350 }}>
-      <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeTwo.webp" title="Picture" alt="pic"/>
-      <CardContent>
-        <Typography gutterBottom className="text-lg text-medium text-center">
-        <p className="text-lg text-medium text-center">{this.state.houses[0].title}</p>
-        <p className="text-lg text-medium text-center">{this.state.houses[0].location}</p>
-        </Typography>
-        <Typography className="text-lg text-medium text-center">
+          <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeTwo.webp" title="Picture" alt="pic"/>
+          <CardContent>
+          <Typography gutterBottom className="text-lg text-medium text-center">
+          <p className="text-lg text-medium text-center">{this.state.houses[0].title}</p>
+          <p className="text-lg text-medium text-center">{this.state.houses[0].location}</p>
+          </Typography>
+          <Typography className="text-lg text-medium text-center">
           <p className="text-lg text-small text-center">{this.state.houses[0].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
           <p className="text-lg text-small text-center">{this.state.houses[0].price}</p>
           
-        </Typography>
-        <Typography className="text-lg text-medium text-center">
+          </Typography>
+          <Typography className="text-lg text-medium text-center">
           <p>‎</p>
           <Link href='./homes/second'><button type="button" className="text-white bg-gradient-to-r from-pink-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Book Home</button></Link>
           </Typography>
-      </CardContent>  
-    </Card>
+          </CardContent>  
+          </Card>
       </div>
       )
     }

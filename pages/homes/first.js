@@ -11,6 +11,8 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import Divider from '@mui/material/Divider';
 import StarIcon from '@mui/icons-material/Star';
 import HelpIcon from '@mui/icons-material/Help';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { createTheme } from '@mui/material/styles';
@@ -19,30 +21,36 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+
 
 function houseOne(){
     return(
       
         <div style={{padding: '20px'}}>
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '780px', height: 'auto', minHeight: '655px'}} className="bg-white">
+            <Paper elevation={0} sx={{width: '100%', maxWidth: '1100', height: 'auto'}} className="bg-white">
             <HouseOneInfo/>
             </Paper>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', minHeight: '300px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
+            </Stack>
+            <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px', position: ''}} className="">
+            <Grid container direction="row" justifyContent="center" alignItems="center">
+            <HouseOneDesc/>
+            <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
             <div className="space-y-4 ">
             <SetDate/>
-            <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Reserve Now</button>
-            <div className="text-center text-stone-800 ">Fees<FeesModal/></div>
+            <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
+            <div className="text-center font-small text-stone-800 ">You won't be charged yet</div>
             </div>
             <div className="flex space-x-28">
-            <div className="text-black font-light	text-center text-decoration-line: underline">$1,409 x 5 nights</div>
+            <div className="text-black font-light	text-center text-decoration-line: underline"><NightFeesModal/></div>
             <div className="text-black text-medium">$7,013</div>
             </div>
             <div className="flex space-x-40">
-            <div className="text-black font-light	text-center text-decoration-line: underline">Cleaning fee</div>
+            <div className="text-black	text-center text-decoration-line: underline"><CleaningFeesModal/></div>
             <div className="text-black text-medium">$375</div>
-            </div><div className="flex space-x-32">
-            <div className="text-black font-light	text-center text-decoration-line: underline">XYZ service fee</div>
+            </div><div className="flex space-x-40">
+            <div className="text-black font-light	text-center text-decoration-line: underline"><ServiceFeeModal/></div>
             <div className="text-black text-medium">$1,043</div>
             </div>
             <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9'}} orientation="horizontal" flexItem/>
@@ -51,7 +59,8 @@ function houseOne(){
             <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$8,431</div>
             </div>
             </Paper>
-            </Stack>    
+            </Grid>
+            </Stack>
         </div>
     )
 }
@@ -105,25 +114,65 @@ const pictureBox = {
 }
 const tomorrow = dayjs().add(1, 'day');
 
-function FeesModal() {
+function NightFeesModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
   
     return (
       <div>
-        <IconButton onClick={handleOpen} theme={theme} color="neutral"><HelpIcon/></IconButton>
+        <button className="text-decoration-line: underline" onClick={handleOpen} theme={theme} color="neutral">$1,409 x 5 nights</button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
-          <Box sx={style}>
-            <div className="grid grid-cols-1 divide-y">
-            <div className="text-center" sx={{ mt: 2 }}>Minimum Nights: $10,500<div className="text-center" sx={{ mt: 2 }}>Homes are able to declare a minimum stay on their homes. The minimum night fee is the base per night fee, multplied by the specified minimum number of nights.</div></div>
-            <div className="text-center" sx={{ mt: 2 }}>Premium Housing: $500<div className="text-center" sx={{ mt: 2 }}>The Premium Housing fee is for homes that cost $1,000 or more per night.</div></div>
+          <Box sx={style} >
+            <div className="space-y-6">
+            <div className="text-center" sx={{ mt: 2 }}>Minimum Nights: $7,013
+            <div className="text-center" sx={{ mt: 2 }}>Homes are able to declare a minimum stay on their homes. The minimum night fee is the base per night fee, multplied by the specified minimum number of nights.</div></div>
             </div>
           </Box>
         </Modal>
       </div>
     );
 }  
+
+function CleaningFeesModal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <button className="text-decoration-line: underline" onClick={handleOpen} theme={theme} color="neutral">Cleaning Fee</button>
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
+        <Box sx={style} >
+          <div className="space-y-6">
+          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $375
+          <div className="text-center" sx={{ mt: 2 }}>One-time fee charged by host to cover the cost of cleaning their space.</div></div>
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
+function ServiceFeeModal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <button className="text-decoration-line: underline" onClick={handleOpen} theme={theme} color="neutral">Service Fee</button>
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
+        <Box sx={style} >
+          <div className="space-y-6">
+          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $1,043
+          <div className="text-center" sx={{ mt: 2 }}>This helps us run our platform and offer services like 24/7 support on your trip.</div></div>
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
 
 function ReviewsModal(){
     const [open, setOpen] = React.useState(false);
@@ -236,12 +285,119 @@ class HouseOneInfo extends React.Component{
         <div className=""> 
           <MainPicture/>
           <Paper elevation={0} sx={{width: '100%', maxWidth: '400px', height: 'auto', minHeight: '400', margin: 'auto'}}>
-          <p className=" text-lg font-small text-center max-w-lg	m-auto ">{this.state.houses[2].description}...<p className=" text-lg font-small text-decoration-line: underline"><FullHomeDescription/></p></p>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px'}}></Stack>
           </Paper>
         </div>
         )
     }
   }
+}
+class HouseOneDesc extends React.Component{
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'http://127.0.0.1:8000/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      return(
+      <div className="text-center">  
+      <MainTxt/> 
+      </div>
+      )
+  }
+}
+}
+
+class MainTxt extends React.Component{
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'http://127.0.0.1:8000/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      return(
+      <div> 
+      <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2}>
+      <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
+      <CardContent>
+      <p className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire villa hosted by Sherry</p>
+      <Stack direction="row" alignItems="center" className="space-x-2">
+      <p className="text-medium text-left">{this.state.houses[2].maxGuests} guests</p>
+      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
+      <p className="text-medium text-left">{this.state.houses[2].bedRooms} bedrooms</p>
+      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
+      <p className="text-medium text-left">{this.state.houses[2].bedRooms} beds</p>
+      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
+      <p className="text-medium text-left">{this.state.houses[2].bathRooms} baths</p>
+      </Stack>
+
+      <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
+
+      <IconDescriptors/>
+      
+      </CardContent>
+      </Paper>
+      </Stack>
+      </div>
+      )
+  }
+}
 }
 
 class HouseOneReviews extends React.Component{
@@ -297,44 +453,72 @@ class HouseOneReviews extends React.Component{
     }
 }
 
+class IconDescriptors extends React.Component{
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'http://127.0.0.1:8000/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      return(
+        <div className="space-y-6">
+        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+        <img src='/images/icons8-home-office-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Dedicated workspace</p>
+        </Stack>
+        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+        <img src='/images/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Self check-in</p>
+        </Stack>
+        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+        <img src='/images/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Free cancellation</p>
+        </Stack>
+        <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
+        <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
+        <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[2].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
+        </Paper>
+      </div>
+      )
+  }
+}
+}
+
 function MainPicture(){
   return(
     <div className="flex flex-row justify-center items-center ">
-    <Paper className="flex flex-row justify-center items-center " elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '800px'}}> 
+    <Paper className="flex flex-row justify-center items-center " elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
         <div>
-          <img src="/images/homeOne1.webp" alt="image1"/>
+          <img src="/images/homeOne1.webp" alt="image1" className="rounded-lg"/>
         </div>
-         
     </Paper>
     </div>
 )
 }
-
-function PictureGrid(){
-  return(
-    <div>
-      <Grid container direction="row" rowSpacing={1}  justifyContent="center" alignItems="center" item xs="auto">
-      <Stack direction="row" spacing={2} className="p-4" alignItems="center" justifyContent="flex-end">
-      <Grid item xs='auto'>
-          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
-      </Grid>
-      <Grid item xs='auto'>
-          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
-      </Grid>
-      </Stack>
-      <Stack direction="row" spacing={2} justifyContent="flex-end" alignItems="center">
-      <Grid item xs='auto'>
-          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
-      </Grid>
-      <Grid item xs='auto'>
-          <img src="/images/homeOne1.webp" alt="image1" className="max-w-xs"/>
-      </Grid>
-      </Stack>
-      </Grid>
-    </div>
-  )
-}
-
 class NextJsCarousel extends React.Component{
     render(){
         return(
