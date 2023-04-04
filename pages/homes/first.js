@@ -40,7 +40,7 @@ function houseOne(){
             <div className="space-y-4 ">
             <SetDate/>
             <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
-            <div className="text-center font-small text-stone-800 ">You won't be charged yet</div>
+            <div className="text-center font-small text-stone-800 ">Fees</div>
             </div>
             <div className="flex space-x-28">
             <div className="text-black font-light	text-center text-decoration-line: underline"><NightFeesModal/></div>
@@ -378,13 +378,13 @@ class MainTxt extends React.Component{
       <CardContent>
       <p className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire villa hosted by Sherry</p>
       <Stack direction="row" alignItems="center" className="space-x-2">
-      <p className="text-medium text-left">{this.state.houses[2].maxGuests} guests</p>
+      <p className="text-medium text-left">{this.state.houses[3].maxGuests} guests</p>
       <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[2].bedRooms} bedrooms</p>
+      <p className="text-medium text-left">{this.state.houses[3].bedRooms} bedrooms</p>
       <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[2].bedRooms} beds</p>
+      <p className="text-medium text-left">{this.state.houses[3].bedRooms} beds</p>
       <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[2].bathRooms} baths</p>
+      <p className="text-medium text-left">{this.state.houses[3].bathRooms} baths</p>
       </Stack>
 
       <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
@@ -500,7 +500,7 @@ class IconDescriptors extends React.Component{
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
-        <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[2].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
+        <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[3].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
         </Paper>
       </div>
       )

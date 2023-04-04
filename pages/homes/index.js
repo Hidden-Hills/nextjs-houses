@@ -59,6 +59,9 @@ function houses (){
             <Grid item xs="auto">
                 <HouseThree/>
             </Grid> 
+            <Grid item xs="auto">
+                <HouseFour/>
+            </Grid> 
             </Grid>
         </div>
     )
@@ -127,13 +130,13 @@ class HouseOne extends React.Component{
         <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeOne1.webp" title="Picture" alt="pic"/>
         <CardContent>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
-        <p className="text-medium text-center">{this.state.houses[2].location}</p>
-        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[2].ratings}</p>
+        <p className="text-medium text-center ">{this.state.houses[3].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[3].ratings}</p>
         </Stack>
         <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
           <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
           <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
-          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[2].price}</p>  
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[3].price}</p>  
         </Stack>
         </CardContent>  
         </Card>
@@ -183,7 +186,7 @@ class HouseTwo extends React.Component{
         
         return(
           <div className="p-4">
-        <Link href='./homes/first'><button type="button" >
+        <Link href='./homes/second'><button type="button" >
         <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
         <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeTwo.webp" title="Picture" alt="pic"/>
         <CardContent>
@@ -243,18 +246,18 @@ class HouseThree extends React.Component{
       if(this.state.houses[0]){
         return(
           <div className="p-4">
-          <Link href='./homes/first'><button type="button" >
+          <Link href='./homes/third'><button type="button" >
           <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
           <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeThree.webp" title="Picture" alt="pic"/>
           <CardContent>
           <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
-          <p className="text-medium text-center">{this.state.houses[1].location}</p>
-          <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[1].ratings}</p>
+          <p className="text-medium text-center">{this.state.houses[2].location}</p>
+          <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[2].ratings}</p>
           </Stack>
           <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
             <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
             <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
-            <p className="text-small text-center px-0.5 font-medium">{this.state.houses[1].price}</p>  
+            <p className="text-small text-center px-0.5 font-medium">{this.state.houses[2].price}</p>  
           </Stack>
           </CardContent>  
           </Card>
@@ -303,25 +306,25 @@ class HouseFour extends React.Component{
       if(this.state.houses[0]){
         
         return(
-            <div className="p-4">
-            <Card sx={{ maxWidth: 345 }}>
-        <CardMedia style={{ height: "250px", paddingTop: "2%" }} image="/images/homeFour.png" title="Picture" alt="pic"/>
-        <CardContent>
-          <Typography gutterBottom className="text-sans text-lg text-medium text-center">
-          <p className="text-sans text-lg text-medium text-center">{this.state.houses[3].title}</p>
-          </Typography>
-          <Typography className="text-sans text-lg text-medium text-center">
-            <p className="text-sans text-lg text-small text-center">{this.state.houses[3].ratings}<StarIcon sx={{ color: grey[900] }}/></p>
-            <p className="text-sans text-lg text-small text-center">{this.state.houses[3].price}</p>
-            
-          </Typography>
-          <Typography className="text-sans text-lg text-medium text-center">
-            <p>‎</p>
-            <Link href='./homes/fourth'><button type="button" className="text-sans text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  focus:ring-blue-300  text-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 rounded-full">Book Home</button></Link>
-            </Typography>
-        </CardContent>  
-      </Card>
-        </div>
+          <div className="p-4">
+          <Link href='./homes/first'><button type="button" >
+          <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+          <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeFour.webp" title="Picture" alt="pic"/>
+          <CardContent>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+          <p style={{marginRight: '8px'}}className="text-medium text-center">{this.state.houses[1].location}</p>
+          <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[1].ratings}</p>
+          </Stack>
+          <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+            <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+            <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
+            <p className="text-small text-center px-0.5 font-medium">{this.state.houses[1].price}</p>  
+          </Stack>
+          </CardContent>  
+          </Card>
+          </button>
+          </Link>
+          </div>
         )
     }
   }
