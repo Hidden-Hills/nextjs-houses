@@ -11,6 +11,7 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import Divider from '@mui/material/Divider';
 import StarIcon from '@mui/icons-material/Star';
 import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { createTheme } from '@mui/material/styles';
@@ -192,23 +193,23 @@ function ReviewsModal(){
 }
 
 function HousePhotosModal(){
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  return(
-    <div>
-      <IconButton className="p-2 text-small text-black" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none", fontWeight: 'light'}}>All Photos<CollectionsIcon/></IconButton>
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
-        <Box elevation={0} sx={pictureBox}>
-          <div className="grid grid-cols-1 divide-y">
-            <NextJsCarousel/>
-          </div>
-        </Box>
-      </Modal>
-    </div>
-  )
-}
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+  
+    return(
+      <div className="h-8 ">
+        <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><img src="/images/icons8-grid-view-22.png" className=""/>Show all photos</Button>
+        <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
+          <Box elevation={0} sx={pictureBox}>
+            <div className="grid grid-cols-1 divide-y">
+              <NextJsCarousel/>
+            </div>
+          </Box>
+        </Modal>
+      </div>
+    )
+  }
 
 function FullHomeDescription(){
   const [open, setOpen] = React.useState(false);
@@ -508,10 +509,12 @@ class IconDescriptors extends React.Component{
 
 function MainPicture(){
   return(
-    <div className="flex flex-row justify-center items-center ">
-    <Paper className="flex flex-row justify-center items-center " elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
+    <div className="flex flex-row justify-center items-center relative ">
+    <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
         <div>
           <img src="/images/homeTwo.webp" alt="image1" className="rounded-lg"/>
+          <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
+
         </div>
     </Paper>
     </div>
