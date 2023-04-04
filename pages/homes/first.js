@@ -10,8 +10,6 @@ import IconButton from '@mui/material/Button';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import Divider from '@mui/material/Divider';
 import StarIcon from '@mui/icons-material/Star';
-import HelpIcon from '@mui/icons-material/Help';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -328,7 +326,7 @@ class HouseOneDesc extends React.Component{
     }
     if(this.state.houses[0]){
       return(
-      <div className="text-center">  
+      <div className="text-center" style={{marginRight: '90px'}}>  
       <MainTxt/> 
       </div>
       )
