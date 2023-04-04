@@ -100,7 +100,7 @@ class HouseOne extends React.Component{
     componentDidMount(){
       var houses = {
         method: 'GET',
-        url: 'http://127.0.0.1:8000/houses/',
+        url: 'https://planets.pythonanywhere.com/houses/',
         Allow: 'GET, POST, HEAD, OPTIONS',
         Vary: 'Accept',
         headers: {
@@ -161,7 +161,7 @@ class HouseTwo extends React.Component{
     componentDidMount(){
       var houses = {
         method: 'GET',
-        url: 'http://127.0.0.1:8000/houses/',
+        url: 'https://planets.pythonanywhere.com/houses/',
         Allow: 'GET, POST, HEAD, OPTIONS',
         Vary: 'Accept',
         headers: {
@@ -222,7 +222,7 @@ class HouseThree extends React.Component{
     componentDidMount(){
       var houses = {
         method: 'GET',
-        url: 'http://127.0.0.1:8000/houses/',
+        url: 'https://planets.pythonanywhere.com/houses/',
         Allow: 'GET, POST, HEAD, OPTIONS',
         Vary: 'Accept',
         headers: {
@@ -282,7 +282,7 @@ class HouseFour extends React.Component{
     componentDidMount(){
       var houses = {
         method: 'GET',
-        url: 'http://127.0.0.1:8000/houses/',
+        url: 'https://planets.pythonanywhere.com/houses/',
         Allow: 'GET, POST, HEAD, OPTIONS',
         Vary: 'Accept',
         headers: {
