@@ -8,7 +8,8 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/Button';
 import Button from '@mui/material/Button';
-import CollectionsIcon from '@mui/icons-material/Collections';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import Divider from '@mui/material/Divider';
 import StarIcon from '@mui/icons-material/Star';
 import CardContent from '@mui/material/CardContent';
@@ -19,9 +20,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'react-calendar/dist/Calendar.css';
+import Avatar from '@mui/material/Avatar';
 import dayjs from 'dayjs';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 function houseOne(){
     return(
@@ -83,7 +85,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
   borderRadius: '10px',
   boxShadow: 24,
@@ -105,11 +107,11 @@ const pictureBox = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 600,
-  bgcolor: 'background.paper',
+  maxWidth: '1200px',
+  minWidth: 350,
   borderRadius: '10px',
-  boxShadow: 24,
-  p: 4,
+  height: 'auto',
+  p: 4, 
 }
 const tomorrow = dayjs().add(1, 'day');
 
@@ -174,22 +176,25 @@ function ServiceFeeModal() {
 }
 
 function ReviewsModal(){
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-  
-    return (
-      <div>
-        <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">1 Review</button>
-        <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
-          <Box sx={style}>
-            <div className="grid grid-cols-1 divide-y">
-            <div className="text-center " sx={{ mt: 2 }}>Donovan: Amazing stay, definetly enjoyed it here!</div>
-            </div>
-          </Box>
-        </Modal>
-      </div>
-    );
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">1 Review</button>
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
+        <Box sx={style}>
+          <div className="grid grid-cols-1">
+          <Stack direction="row" spacing={2}>
+          <Avatar>D</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Donovan<br></br><p className="opacity-75">April 2023</p></p>
+          </Stack>
+          <p className="pt-4">Amazing stay, definetly enjoyed it here!</p>
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  );
 }
 
 function HousePhotosModal(){
@@ -198,12 +203,12 @@ function HousePhotosModal(){
   const handleClose = () => setOpen(false);
 
   return(
-    <div className="h-8 ">
-      <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><img src="/images/icons8-grid-view-22.png" className=""/>Show all photos</Button>
+    <div className="overflow-hidden">
+      <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><img src="/icons/icons8-grid-view-22.png" className=""/>Show all photos</Button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
         <Box elevation={0} sx={pictureBox}>
-          <div className="grid grid-cols-1 divide-y">
-            <NextJsCarousel/>
+          <div className="grid grid-cols-1 divide-y overflow-hidden">
+          <StandardImageList/>
           </div>
         </Box>
       </Modal>
@@ -389,6 +394,8 @@ class MainTxt extends React.Component{
       <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
 
       <IconDescriptors/>
+
+      <HouseOneReviews/>
       
       </CardContent>
       </Paper>
@@ -434,19 +441,14 @@ class HouseOneReviews extends React.Component{
         }
         if(this.state.houses[0]){
           return(
-          <div className="p-4"> 
-          <div className="">  
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-          <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', maxHeight: '400px', height: 'auto'}}  className="text-center text-black py-2 px-2">
-            <div className="space-y-4"></div>
-            <div className=""/>
-            <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
-            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}><StarIcon/><p className="px-2 text-xl">5.0</p> <Divider color="#121212" orientation="vertical" flexItem/><ReviewsModal/></div>  
+            <div className="pt-5"> 
+            <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
+            <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
+            <img src="/icons/icons8-star-filled-20.png" alt="star"/><p className="text-lg">{this.state.houses[0].ratings}.0</p>
+            <Stack direction="row" alignItems="center" spacing={0.5}><FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/> <ReviewsModal/></Stack>
             </Stack>
             </Paper>
-          </Stack> 
-            </div>   
-          </div>
+            </div>
           )
       }
     }
@@ -489,17 +491,18 @@ class IconDescriptors extends React.Component{
       return(
         <div className="space-y-6">
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/images/icons8-home-office-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Dedicated workspace</p>
+        <img src='/icons/icons8-home-office-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Dedicated workspace</p>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/images/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Self check-in</p>
+        <img src='/icons/icons8-open-door-25.png' alt="open door" className="text-center max-w-full h-full"/><p>Self check-in</p>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/images/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Free cancellation</p>
+        <img src='/icons/icons8-important-month-25.png' alt="important month" className="text-center max-w-full h-full"/><p>Free cancellation</p>
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
         <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[3].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
+        <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         </Paper>
       </div>
       )
@@ -512,15 +515,81 @@ function MainPicture(){
     <div className="flex flex-row justify-center items-center relative">
     <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
         <div>
-          <img src="/images/homeOne1.webp" alt="image1" className="rounded-lg"/>
+          <img src="/houseOne/homeOne.webp" alt="image1" className="rounded-lg"/>
           <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
-
-
         </div>
     </Paper>
     </div>
 )
 }
+
+function srcset(image, width, height, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${width * cols}&h=${
+      height * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
+
+
+
+function StandardImageList() {
+  return (
+    <ImageList
+      sx={{
+        maxWidth: 900,
+        maxHeight: 650,
+        minWidth: 350,
+        height: 'auto',
+        transform: 'translateZ(0)',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        borderRadius: '20px'
+        
+      }}
+      rowHeight={350}
+      gap={3}
+    >
+      {itemData.map((item) => {
+        const cols = item.featured ? 2 : 1;
+        const rows = item.featured ? 2 : 1;
+
+        return (
+          <ImageListItem key={item.img} cols={cols} rows={rows}>
+            <img {...srcset(item.img, 250, 200, rows, cols)} alt={item.title} loading="lazy" />
+            <ImageListItemBar sx={{background:'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)', }} title={item.title} position="top"/></ImageListItem>
+        );
+      })}
+    </ImageList>
+  );
+}
+
+const itemData = [
+  {
+    img: '/houseOne/homeOne.webp',
+    title: 'Exterior',
+    featured: true,
+
+
+  },
+  {
+    img: '/houseOne/1.webp',
+    title: 'Overhead View',
+
+  },
+  {
+    img: '/houseOne/2.webp',
+    title: 'Lake View',
+
+  },
+  {
+    img: '/houseOne/3.webp',
+    title: 'Lake View 2',
+    featured: true,
+    
+  }
+]
 class NextJsCarousel extends React.Component{
     render(){
         return(
@@ -528,16 +597,16 @@ class NextJsCarousel extends React.Component{
             <Paper className="flex flex-row justify-center items-center  max-w-4xl" elevation={0} sx={{width: '100%', height: 'auto'}}> 
             <Carousel>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseOne/homeOne.webp" alt="image1"/>
                 </div>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseOne/homeOne.webp" alt="image1"/>
                 </div>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseOne/homeOne.webp" alt="image1"/>
                 </div>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseOne/homeOne.webp" alt="image1"/>
                 </div>
                 </Carousel>
             </Paper>

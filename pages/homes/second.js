@@ -6,10 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/Button';
-import CollectionsIcon from '@mui/icons-material/Collections';
 import Divider from '@mui/material/Divider';
-import StarIcon from '@mui/icons-material/Star';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -21,12 +18,13 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import Avatar from '@mui/material/Avatar';
 
 
 function houseTwo(){
     return(
       
-        <div style={{padding: '20px'}}>
+        <div className="-space-y-6">
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
             <Paper elevation={0} sx={{width: '100%', maxWidth: '1100', height: 'auto'}} className="bg-white">
             <HouseOneInfo/>
@@ -183,8 +181,11 @@ function ReviewsModal(){
         <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">1 Review</button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
           <Box sx={style}>
-            <div className="grid grid-cols-1 divide-y">
-            <div className="text-center " sx={{ mt: 2 }}>Donovan: Amazing stay, definetly enjoyed it here!</div>
+            <div className="grid grid-cols-1">
+            <Stack direction="row" spacing={2}>
+            <Avatar>D</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Donovan<br></br><p className="opacity-75">April 2023</p></p>
+            </Stack>
+            <p className="pt-4">Amazing stay, definetly enjoyed it here!</p>
             </div>
           </Box>
         </Modal>
@@ -199,7 +200,7 @@ function HousePhotosModal(){
   
     return(
       <div className="h-8 ">
-        <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><img src="/images/icons8-grid-view-22.png" className=""/>Show all photos</Button>
+        <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><img src="/icons/icons8-grid-view-22.png" className=""/>Show all photos</Button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
           <Box elevation={0} sx={pictureBox}>
             <div className="grid grid-cols-1 divide-y">
@@ -389,6 +390,8 @@ class MainTxt extends React.Component{
       <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
 
       <IconDescriptors/>
+
+      <HouseTwoReviews/>
       
       </CardContent>
       </Paper>
@@ -434,23 +437,20 @@ class HouseTwoReviews extends React.Component{
         }
         if(this.state.houses[0]){
           return(
-          <div className="p-4"> 
-          <div className="">  
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-          <Paper elevation={2} sx={{width: '100%', maxWidth: '250px', maxHeight: '400px', height: 'auto'}}  className="text-center text-black py-2 px-2">
-            <div className="space-y-4"></div>
-            <div className=""/>
-            <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
-            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}><StarIcon/><p className="px-2 text-xl">5.0</p> <Divider color="#121212" orientation="vertical" flexItem/><ReviewsModal/></div>  
-            </Stack>
-            </Paper>
-          </Stack> 
-            </div>   
+          <div className="pt-5"> 
+          <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
+          <img src="/icons/icons8-star-filled-20.png" alt="star"/><p className="text-lg">{this.state.houses[0].ratings}.0</p>
+          <Stack direction="row" alignItems="center" spacing={0.5}><FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/> <ReviewsModal/></Stack>
+          </Stack>
+          </Paper>
+          
           </div>
           )
       }
     }
 }
+ 
 
 class IconDescriptors extends React.Component{
   constructor(props){
@@ -489,18 +489,20 @@ class IconDescriptors extends React.Component{
       return(
         <div className="space-y-6">
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/images/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Self check-in</p>
+        <img src='/icons/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Self check-in</p>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/images/icons8-gold-medal-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Hideaway is a Superhost</p>
+        <img src='/icons/icons8-gold-medal-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Hideaway is a Superhost</p>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/images/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Free cancellation for 48 hours</p>
+        <img src='/icons/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Free cancellation for 48 hours</p>
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
         <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[0].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
         </Paper>
+        <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
+        
       </div>
       )
   }
@@ -509,12 +511,11 @@ class IconDescriptors extends React.Component{
 
 function MainPicture(){
   return(
-    <div className="flex flex-row justify-center items-center relative ">
+    <div className="flex flex-row justify-center items-center relative pt-8 ">
     <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
         <div>
-          <img src="/images/homeTwo.webp" alt="image1" className="rounded-lg"/>
+          <img src="/houseTwo/homeTwo.webp" alt="image1" className="rounded-lg"/>
           <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
-
         </div>
     </Paper>
     </div>
@@ -527,16 +528,16 @@ class NextJsCarousel extends React.Component{
             <Paper className="flex flex-row justify-center items-center  max-w-4xl" elevation={0} sx={{width: '100%', height: 'auto'}}> 
             <Carousel>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
                 </div>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
                 </div>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
                 </div>
                 <div>
-                  <img src="/images/homeOne1.webp" alt="image1"/>
+                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
                 </div>
                 </Carousel>
             </Paper>

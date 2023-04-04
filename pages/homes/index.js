@@ -127,7 +127,7 @@ class HouseOne extends React.Component{
         <div className="p-4">
         <Link href='./homes/first'><button type="button" >
         <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
-        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeOne1.webp" title="Picture" alt="pic"/>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseOne/homeOne.webp" title="Picture" alt="pic"/>
         <CardContent>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
         <p className="text-medium text-center ">{this.state.houses[3].location}</p>
@@ -188,7 +188,7 @@ class HouseTwo extends React.Component{
           <div className="p-4">
         <Link href='./homes/second'><button type="button" >
         <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
-        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeTwo.webp" title="Picture" alt="pic"/>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseTwo/homeTwo.webp" title="Picture" alt="pic"/>
         <CardContent>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
         <p className="text-medium text-center">{this.state.houses[0].location}</p>
