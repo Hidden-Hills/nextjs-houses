@@ -45,13 +45,12 @@ const theme = createTheme({
 
 function houses (){
     return(
-        <div>
+        <div className="pt-5">
           <Grid container direction="row" justifyContent="center" alignItems="center">
-            <TaskBar/>
           </Grid>
             <Grid container direction="row" justifyContent="center" alignItems="center">
             <Grid item xs="auto">
-                <HouseOne/>
+                <HouseOne id="1"/>
             </Grid>
             <Grid item xs="auto">
                 <HouseTwo/>
@@ -69,9 +68,29 @@ function houses (){
 
 function TaskBar (){
   return(
-    <div>
-      <Grid container direction="row" justifyContent="center" alignItems="center" item xs="auto" >
-      <AvatarChip/>
+    <div className="pt-5">
+      <Grid container direction="row" justifyContent="center" alignItems="center" item xs="auto" spacing={4} >
+      
+      <Grid item xs="auto">
+        <div className="text-center text-sm">
+        <button><img src="/icons/icons8-chef-hat-30.png" className=" m-auto"/><p>Chef's Kitchen</p></button>
+        </div>
+      </Grid>
+      <Grid item xs="auto">
+        <div className="text-center text-sm">
+        <button><img src="/icons/icons8-diamond-heart-30.png" className=" m-auto"/><p>Luxury</p></button>
+        </div>
+      </Grid>
+      <Grid item xs="auto">
+        <div className="text-center text-sm">
+        <button><img src="/icons/icons8-mountain-30.png" className=" m-auto"/><p>Mountains</p></button>
+        </div>
+      </Grid>
+      <Grid item xs="auto">
+        <div className="text-center text-sm">
+        <button><img src="/icons/icons8-water-element-30.png" className=" m-auto"/><p>Pool</p></button>
+        </div>
+      </Grid>
       </Grid>   
     </div>
   )
