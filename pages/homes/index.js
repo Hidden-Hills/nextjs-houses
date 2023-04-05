@@ -267,7 +267,7 @@ class HouseThree extends React.Component{
           <div className="p-4">
           <Link href='./homes/third'><button type="button" >
           <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
-          <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeThree.webp" title="Picture" alt="pic"/>
+          <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseThree/homeThree.webp" title="Picture" alt="pic"/>
           <CardContent>
           <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
           <p className="text-medium text-center">{this.state.houses[2].location}</p>
