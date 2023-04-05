@@ -19,7 +19,9 @@ import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Avatar from '@mui/material/Avatar';
-
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 function houseTwo(){
     return(
@@ -39,21 +41,21 @@ function houseTwo(){
             <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
             <div className="text-center font-small text-stone-800 ">Fees</div>
             </div>
-            <div className="flex space-x-28">
+            <div className="flex space-x-32">
             <div className="text-black font-light	text-center text-decoration-line: underline"><NightFeesModal/></div>
-            <div className="text-black text-medium">$7,013</div>
+            <div className="text-black text-medium">$2,570</div>
             </div>
             <div className="flex space-x-40">
             <div className="text-black	text-center text-decoration-line: underline"><CleaningFeesModal/></div>
-            <div className="text-black text-medium">$375</div>
-            </div><div className="flex space-x-40">
+            <div className="text-black text-medium">$180</div>
+            </div><div className="flex space-x-44">
             <div className="text-black font-light	text-center text-decoration-line: underline"><ServiceFeeModal/></div>
-            <div className="text-black text-medium">$1,043</div>
+            <div className="text-black text-medium">$98</div>
             </div>
             <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9'}} orientation="horizontal" flexItem/>
             <div className="flex">
             <div className="text-black text-center font-semibold">Total before taxes</div>
-            <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$8,431</div>
+            <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$2,848</div>
             </div>
             </Paper>
             </Grid>
@@ -103,13 +105,37 @@ const pictureBox = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 600,
-  bgcolor: 'background.paper',
+  maxWidth: '1200px',
+  minWidth: 350,
   borderRadius: '10px',
-  boxShadow: 24,
-  p: 4,
+  height: 'auto',
+  p: 4, 
 }
+const itemData = [
+  {
+    img: '/houseTwo/homeTwo.webp',
+    title: 'Exterior',
+    featured: true,
+  },
+  {
+    img: '/houseTwo/1.webp',
+    title: 'Pool View',
+
+  },
+  {
+    img: '/houseTwo/2.webp',
+    title: 'Living Room',
+
+  },
+  {
+    img: '/houseTwo/3.webp',
+    title: 'Bedroom',
+    featured: true,
+    
+  }
+]
 const tomorrow = dayjs().add(1, 'day');
+
 
 function NightFeesModal() {
     const [open, setOpen] = React.useState(false);
@@ -118,11 +144,11 @@ function NightFeesModal() {
   
     return (
       <div>
-        <button className="text-decoration-line: underline" onClick={handleOpen} theme={theme} color="neutral">$1,409 x 5 nights</button>
+        <button className="text-decoration-line: underline" onClick={handleOpen} theme={theme} color="neutral">$514 x 5 nights</button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
           <Box sx={style} >
             <div className="space-y-6">
-            <div className="text-center" sx={{ mt: 2 }}>Minimum Nights: $7,013
+            <div className="text-center" sx={{ mt: 2 }}>Minimum Nights: $2,570
             <div className="text-center" sx={{ mt: 2 }}>Homes are able to declare a minimum stay on their homes. The minimum night fee is the base per night fee, multplied by the specified minimum number of nights.</div></div>
             </div>
           </Box>
@@ -142,7 +168,7 @@ function CleaningFeesModal() {
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
         <Box sx={style} >
           <div className="space-y-6">
-          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $375
+          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $180
           <div className="text-center" sx={{ mt: 2 }}>One-time fee charged by host to cover the cost of cleaning their space.</div></div>
           </div>
         </Box>
@@ -162,7 +188,7 @@ function ServiceFeeModal() {
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
         <Box sx={style} >
           <div className="space-y-6">
-          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $1,043
+          <div className="text-center" sx={{ mt: 2 }}>Service Fee: $98
           <div className="text-center" sx={{ mt: 2 }}>This helps us run our platform and offer services like 24/7 support on your trip.</div></div>
           </div>
         </Box>
@@ -170,6 +196,46 @@ function ServiceFeeModal() {
     </div>
   );
 }
+function srcset(image, width, height, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${width * cols}&h=${
+      height * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
+
+function StandardImageList() {
+  return (
+    <ImageList
+      sx={{
+        maxWidth: 900,
+        maxHeight: 650,
+        minWidth: 350,
+        height: 'auto',
+        transform: 'translateZ(0)',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        borderRadius: '20px'
+        
+      }}
+      rowHeight={350}
+      gap={3}
+    >
+      {itemData.map((item) => {
+        const cols = item.featured ? 2 : 1;
+        const rows = item.featured ? 2 : 1;
+
+        return (
+          <ImageListItem key={item.img} cols={cols} rows={rows}>
+            <img {...srcset(item.img, 250, 200, rows, cols)} alt={item.title} loading="lazy" />
+            <ImageListItemBar sx={{background:'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)', }} title={item.title} position="top"/></ImageListItem>
+        );
+      })}
+    </ImageList>
+  );
+}
+
 
 function ReviewsModal(){
     const [open, setOpen] = React.useState(false);
@@ -178,14 +244,22 @@ function ReviewsModal(){
   
     return (
       <div>
-        <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">1 Review</button>
+        <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">3 Reviews</button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
           <Box sx={style}>
             <div className="grid grid-cols-1">
             <Stack direction="row" spacing={2}>
-            <Avatar>D</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Donovan<br></br><p className="opacity-75">April 2023</p></p>
+            <Avatar>J</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>James<br></br><p className="opacity-75">April 2023</p></p>
             </Stack>
-            <p className="pt-4">Amazing stay, definetly enjoyed it here!</p>
+            <p className="pt-4 pb-8">A quiet oasis perfect for relaxing.</p>
+            <Stack direction="row" spacing={2}>
+            <Avatar>K</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Kimberly<br></br><p className="opacity-75">April 2023</p></p>
+            </Stack>
+            <p className="pt-4 pb-8">Modern beautiful space.</p>
+            <Stack direction="row" spacing={2}>
+            <Avatar>T</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Thomas<br></br><p className="opacity-75">April 2023</p></p>
+            </Stack>
+            <p className="pt-4 pb-8">Beautiful and spacious property. Super clean space. Amazing backyard!</p>
             </div>
           </Box>
         </Modal>
@@ -199,12 +273,12 @@ function HousePhotosModal(){
     const handleClose = () => setOpen(false);
   
     return(
-      <div className="h-8 ">
+      <div className="overflow-hidden ">
         <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><img src="/icons/icons8-grid-view-22.png" className=""/>Show all photos</Button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
           <Box elevation={0} sx={pictureBox}>
-            <div className="grid grid-cols-1 divide-y">
-              <NextJsCarousel/>
+            <div className="grid grid-cols-1 divide-y overflow-hidden">
+              <StandardImageList/>
             </div>
           </Box>
         </Modal>
@@ -521,28 +595,5 @@ function MainPicture(){
     </div>
 )
 }
-class NextJsCarousel extends React.Component{
-    render(){
-        return(
-            <div className="flex flex-row justify-center items-center ">
-            <Paper className="flex flex-row justify-center items-center  max-w-4xl" elevation={0} sx={{width: '100%', height: 'auto'}}> 
-            <Carousel>
-                <div>
-                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
-                </div>
-                <div>
-                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
-                </div>
-                <div>
-                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
-                </div>
-                <div>
-                  <img src="/houseTwo/homeTwo.webp" alt="image1"/>
-                </div>
-                </Carousel>
-            </Paper>
-            </div>
-        )
-    }
-}
+
 export default houseTwo

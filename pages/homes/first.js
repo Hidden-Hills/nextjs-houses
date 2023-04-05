@@ -590,28 +590,5 @@ const itemData = [
     
   }
 ]
-class NextJsCarousel extends React.Component{
-    render(){
-        return(
-            <div className="flex flex-row justify-center items-center ">
-            <Paper className="flex flex-row justify-center items-center  max-w-4xl" elevation={0} sx={{width: '100%', height: 'auto'}}> 
-            <Carousel>
-                <div>
-                  <img src="/houseOne/homeOne.webp" alt="image1"/>
-                </div>
-                <div>
-                  <img src="/houseOne/homeOne.webp" alt="image1"/>
-                </div>
-                <div>
-                  <img src="/houseOne/homeOne.webp" alt="image1"/>
-                </div>
-                <div>
-                  <img src="/houseOne/homeOne.webp" alt="image1"/>
-                </div>
-                </Carousel>
-            </Paper>
-            </div>
-        )
-    }
-}
+
 export default houseOne
