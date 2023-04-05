@@ -3,7 +3,6 @@ import axios from "axios"
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -25,16 +24,15 @@ import ImageListItem from '@mui/material/ImageListItem';
 
 function houseTwo(){
     return(
-      
         <div className="-space-y-6">
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
             <Paper elevation={0} sx={{width: '100%', maxWidth: '1100', height: 'auto'}} className="bg-white">
-            <HouseOneInfo/>
+            <HouseInformation/>
             </Paper>
             </Stack>
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px', position: ''}} className="">
             <Grid container direction="row" justifyContent="center" alignItems="center">
-            <HouseOneDesc/>
+            <HouseDescription/>
             <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
             <div className="space-y-4 ">
             <SetDate/>
@@ -136,6 +134,58 @@ const itemData = [
 ]
 const tomorrow = dayjs().add(1, 'day');
 
+function srcset(image, width, height, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${width * cols}&h=${
+      height * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
+
+function StandardImageList() {
+  return (
+    <ImageList
+      sx={{
+        maxWidth: 900,
+        maxHeight: 650,
+        minWidth: 350,
+        height: 'auto',
+        transform: 'translateZ(0)',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        borderRadius: '20px'
+        
+      }}
+      rowHeight={350}
+      gap={3}
+    >
+      {itemData.map((item) => {
+        const cols = item.featured ? 2 : 1;
+        const rows = item.featured ? 2 : 1;
+
+        return (
+          <ImageListItem key={item.img} cols={cols} rows={rows}>
+            <img {...srcset(item.img, 250, 200, rows, cols)} alt={item.title} loading="lazy" />
+            <ImageListItemBar sx={{background:'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)', }} title={item.title} position="top"/></ImageListItem>
+        );
+      })}
+    </ImageList>
+  );
+}
+
+function MainPicture(){
+  return(
+    <div className="flex flex-row justify-center items-center relative pt-8 ">
+    <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
+        <div>
+          <img src="/houseTwo/homeTwo.webp" alt="image1" className="rounded-lg"/>
+          <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
+        </div>
+    </Paper>
+    </div>
+)
+}
 
 function NightFeesModal() {
     const [open, setOpen] = React.useState(false);
@@ -196,46 +246,6 @@ function ServiceFeeModal() {
     </div>
   );
 }
-function srcset(image, width, height, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
-
-function StandardImageList() {
-  return (
-    <ImageList
-      sx={{
-        maxWidth: 900,
-        maxHeight: 650,
-        minWidth: 350,
-        height: 'auto',
-        transform: 'translateZ(0)',
-        paddingTop: '5px',
-        paddingBottom: '5px',
-        borderRadius: '20px'
-        
-      }}
-      rowHeight={350}
-      gap={3}
-    >
-      {itemData.map((item) => {
-        const cols = item.featured ? 2 : 1;
-        const rows = item.featured ? 2 : 1;
-
-        return (
-          <ImageListItem key={item.img} cols={cols} rows={rows}>
-            <img {...srcset(item.img, 250, 200, rows, cols)} alt={item.title} loading="lazy" />
-            <ImageListItemBar sx={{background:'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)', }} title={item.title} position="top"/></ImageListItem>
-        );
-      })}
-    </ImageList>
-  );
-}
-
 
 function ReviewsModal(){
     const [open, setOpen] = React.useState(false);
@@ -284,7 +294,7 @@ function HousePhotosModal(){
         </Modal>
       </div>
     )
-  }
+}
 
 function FullHomeDescription(){
   const [open, setOpen] = React.useState(false);
@@ -319,8 +329,7 @@ function SetDate() {
     );
 }
 
-
-class HouseOneInfo extends React.Component{
+class HouseInformation extends React.Component{
 
     constructor(props){
       super(props)
@@ -366,7 +375,7 @@ class HouseOneInfo extends React.Component{
     }
   }
 }
-class HouseOneDesc extends React.Component{
+class HouseDescription extends React.Component{
 
   constructor(props){
     super(props)
@@ -403,14 +412,14 @@ class HouseOneDesc extends React.Component{
     if(this.state.houses[0]){
       return(
       <div className="text-center" style={{marginRight: '90px'}}>  
-      <MainTxt/> 
+      <MainElement/> 
       </div>
       )
   }
 }
 }
 
-class MainTxt extends React.Component{
+class MainElement extends React.Component{
 
   constructor(props){
     super(props)
@@ -465,7 +474,7 @@ class MainTxt extends React.Component{
 
       <IconDescriptors/>
 
-      <HouseTwoReviews/>
+      <HouseReviews/>
       
       </CardContent>
       </Paper>
@@ -476,7 +485,7 @@ class MainTxt extends React.Component{
 }
 }
 
-class HouseTwoReviews extends React.Component{
+class HouseReviews extends React.Component{
     constructor(props){
         super(props)
         
@@ -524,7 +533,6 @@ class HouseTwoReviews extends React.Component{
       }
     }
 }
- 
 
 class IconDescriptors extends React.Component{
   constructor(props){
@@ -581,19 +589,6 @@ class IconDescriptors extends React.Component{
       )
   }
 }
-}
-
-function MainPicture(){
-  return(
-    <div className="flex flex-row justify-center items-center relative pt-8 ">
-    <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
-        <div>
-          <img src="/houseTwo/homeTwo.webp" alt="image1" className="rounded-lg"/>
-          <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
-        </div>
-    </Paper>
-    </div>
-)
 }
 
 export default houseTwo

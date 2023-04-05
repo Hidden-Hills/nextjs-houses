@@ -3,15 +3,12 @@ import axios from "axios"
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/Button';
 import Button from '@mui/material/Button';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Divider from '@mui/material/Divider';
-import StarIcon from '@mui/icons-material/Star';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -27,16 +24,15 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 function houseOne(){
     return(
-      
         <div style={{padding: '20px'}}>
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
             <Paper elevation={0} sx={{width: '100%', maxWidth: '1100', height: 'auto'}} className="bg-white">
-            <HouseOneInfo/>
+            <HouseInformation/>
             </Paper>
             </Stack>
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px', position: ''}} className="">
             <Grid container direction="row" justifyContent="center" alignItems="center">
-            <HouseOneDesc/>
+            <HouseDescription/>
             <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
             <div className="space-y-4 ">
             <SetDate/>
@@ -113,7 +109,85 @@ const pictureBox = {
   height: 'auto',
   p: 4, 
 }
+const itemData = [
+  {
+    img: '/houseOne/homeOne.webp',
+    title: 'Exterior',
+    featured: true,
+
+
+  },
+  {
+    img: '/houseOne/1.webp',
+    title: 'Overhead View',
+
+  },
+  {
+    img: '/houseOne/2.webp',
+    title: 'Lake View',
+
+  },
+  {
+    img: '/houseOne/3.webp',
+    title: 'Lake View 2',
+    featured: true,
+    
+  }
+]
 const tomorrow = dayjs().add(1, 'day');
+
+function srcset(image, width, height, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${width * cols}&h=${
+      height * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
+
+function MainPicture(){
+  return(
+    <div className="flex flex-row justify-center items-center relative">
+    <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
+        <div>
+          <img src="/houseOne/homeOne.webp" alt="image1" className="rounded-lg"/>
+          <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
+        </div>
+    </Paper>
+    </div>
+)
+}
+
+function StandardImageList() {
+  return (
+    <ImageList
+      sx={{
+        maxWidth: 900,
+        maxHeight: 650,
+        minWidth: 350,
+        height: 'auto',
+        transform: 'translateZ(0)',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        borderRadius: '20px'
+        
+      }}
+      rowHeight={350}
+      gap={3}
+    >
+      {itemData.map((item) => {
+        const cols = item.featured ? 2 : 1;
+        const rows = item.featured ? 2 : 1;
+
+        return (
+          <ImageListItem key={item.img} cols={cols} rows={rows}>
+            <img {...srcset(item.img, 250, 200, rows, cols)} alt={item.title} loading="lazy" />
+            <ImageListItemBar sx={{background:'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)', }} title={item.title} position="top"/></ImageListItem>
+        );
+      })}
+    </ImageList>
+  );
+}
 
 function NightFeesModal() {
     const [open, setOpen] = React.useState(false);
@@ -249,98 +323,7 @@ function SetDate() {
     );
 }
 
-
-class HouseOneInfo extends React.Component{
-
-    constructor(props){
-      super(props)
-      
-      this.state = {
-        houses: []
-      }
-    } 
-    
-    componentDidMount(){
-      var houses = {
-        method: 'GET',
-        url: 'https://planets.pythonanywhere.com/houses/',
-        Allow: 'GET, POST, HEAD, OPTIONS',
-        Vary: 'Accept',
-        headers: {
-            "Content-type": "application/json",
-        }
-      };
-      axios.request(houses)
-      .then(response=>{
-        this.setState({
-            houses: response.data
-        })
-        console.log(response.data)
-      })
-    }
-    render(){
-      if(!this.state.houses[0]){
-        return(
-            <p>Loading</p>
-        )
-      }
-      if(this.state.houses[0]){
-        return(
-        <div className=""> 
-          <MainPicture/>
-          <Paper elevation={0} sx={{width: '100%', maxWidth: '400px', height: 'auto', minHeight: '400', margin: 'auto'}}>
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px'}}></Stack>
-          </Paper>
-        </div>
-        )
-    }
-  }
-}
-class HouseOneDesc extends React.Component{
-
-  constructor(props){
-    super(props)
-    
-    this.state = {
-      houses: []
-    }
-  } 
-  
-  componentDidMount(){
-    var houses = {
-      method: 'GET',
-      url: 'https://planets.pythonanywhere.com/houses/',
-      Allow: 'GET, POST, HEAD, OPTIONS',
-      Vary: 'Accept',
-      headers: {
-          "Content-type": "application/json",
-      }
-    };
-    axios.request(houses)
-    .then(response=>{
-      this.setState({
-          houses: response.data
-      })
-      console.log(response.data)
-    })
-  }
-  render(){
-    if(!this.state.houses[0]){
-      return(
-          <p>Loading</p>
-      )
-    }
-    if(this.state.houses[0]){
-      return(
-      <div className="text-center" style={{marginRight: '90px'}}>  
-      <MainTxt/> 
-      </div>
-      )
-  }
-}
-}
-
-class MainTxt extends React.Component{
+class MainElement extends React.Component{
 
   constructor(props){
     super(props)
@@ -390,13 +373,9 @@ class MainTxt extends React.Component{
       <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
       <p className="text-medium text-left">{this.state.houses[3].bathRooms} baths</p>
       </Stack>
-
       <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
-
       <IconDescriptors/>
-
-      <HouseOneReviews/>
-      
+      <HouseReviews/>
       </CardContent>
       </Paper>
       </Stack>
@@ -406,7 +385,98 @@ class MainTxt extends React.Component{
 }
 }
 
-class HouseOneReviews extends React.Component{
+class HouseInformation extends React.Component{
+
+    constructor(props){
+      super(props)
+      
+      this.state = {
+        houses: []
+      }
+    } 
+    
+    componentDidMount(){
+      var houses = {
+        method: 'GET',
+        url: 'https://planets.pythonanywhere.com/houses/',
+        Allow: 'GET, POST, HEAD, OPTIONS',
+        Vary: 'Accept',
+        headers: {
+            "Content-type": "application/json",
+        }
+      };
+      axios.request(houses)
+      .then(response=>{
+        this.setState({
+            houses: response.data
+        })
+        console.log(response.data)
+      })
+    }
+    render(){
+      if(!this.state.houses[0]){
+        return(
+            <p>Loading</p>
+        )
+      }
+      if(this.state.houses[0]){
+        return(
+        <div className=""> 
+          <MainPicture/>
+          <Paper elevation={0} sx={{width: '100%', maxWidth: '400px', height: 'auto', minHeight: '400', margin: 'auto'}}>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px'}}></Stack>
+          </Paper>
+        </div>
+        )
+    }
+  }
+}
+
+class HouseDescription extends React.Component{
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      return(
+      <div className="text-center" style={{marginRight: '90px'}}>  
+      <MainElement/> 
+      </div>
+      )
+  }
+}
+}
+
+class HouseReviews extends React.Component{
     constructor(props){
         super(props)
         
@@ -509,86 +579,5 @@ class IconDescriptors extends React.Component{
   }
 }
 }
-
-function MainPicture(){
-  return(
-    <div className="flex flex-row justify-center items-center relative">
-    <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
-        <div>
-          <img src="/houseOne/homeOne.webp" alt="image1" className="rounded-lg"/>
-          <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
-        </div>
-    </Paper>
-    </div>
-)
-}
-
-function srcset(image, width, height, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
-
-
-
-function StandardImageList() {
-  return (
-    <ImageList
-      sx={{
-        maxWidth: 900,
-        maxHeight: 650,
-        minWidth: 350,
-        height: 'auto',
-        transform: 'translateZ(0)',
-        paddingTop: '5px',
-        paddingBottom: '5px',
-        borderRadius: '20px'
-        
-      }}
-      rowHeight={350}
-      gap={3}
-    >
-      {itemData.map((item) => {
-        const cols = item.featured ? 2 : 1;
-        const rows = item.featured ? 2 : 1;
-
-        return (
-          <ImageListItem key={item.img} cols={cols} rows={rows}>
-            <img {...srcset(item.img, 250, 200, rows, cols)} alt={item.title} loading="lazy" />
-            <ImageListItemBar sx={{background:'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)', }} title={item.title} position="top"/></ImageListItem>
-        );
-      })}
-    </ImageList>
-  );
-}
-
-const itemData = [
-  {
-    img: '/houseOne/homeOne.webp',
-    title: 'Exterior',
-    featured: true,
-
-
-  },
-  {
-    img: '/houseOne/1.webp',
-    title: 'Overhead View',
-
-  },
-  {
-    img: '/houseOne/2.webp',
-    title: 'Lake View',
-
-  },
-  {
-    img: '/houseOne/3.webp',
-    title: 'Lake View 2',
-    featured: true,
-    
-  }
-]
 
 export default houseOne
