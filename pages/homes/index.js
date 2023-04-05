@@ -4,16 +4,14 @@ import axios from "axios"
 import StarIcon from '@mui/icons-material/Star';
 import { grey } from '@mui/material/colors';
 import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import CastleOutlinedIcon from '@mui/icons-material/CastleOutlined';import Modal from '@mui/material/Modal';
 import { createTheme } from '@mui/material/styles';
-import IconButton from '@mui/material/Button';
+import dayjs from 'dayjs';
 
 
 const style = {
@@ -43,6 +41,14 @@ const theme = createTheme({
   },
 });
 
+
+
+const today = dayjs().get('date')
+const tomorrow = today + 4
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May","Jun","Jul", "Aug", "Sep", "Oct", "Nov","Dec"];
+const d = new Date();
+
+
 function houses (){
     return(
         <div className="pt-5">
@@ -50,7 +56,7 @@ function houses (){
           </Grid>
             <Grid container direction="row" justifyContent="center" alignItems="center">
             <Grid item xs="auto">
-                <HouseOne id="1"/>
+                <HouseOne/>
             </Grid>
             <Grid item xs="auto">
                 <HouseTwo/>
@@ -61,101 +67,75 @@ function houses (){
             <Grid item xs="auto">
                 <HouseFour/>
             </Grid> 
+            <Grid container direction="row" justifyContent="center" alignItems="center">
+            <Grid item xs="auto">
+                <HouseFive/>
+            </Grid>
+            <Grid item xs="auto">
+                <HouseSix/>
+            </Grid> 
+            <Grid item xs="auto">
+                <HouseSeven/>
+            </Grid> 
+            <Grid item xs="auto">
+                <HouseEight/>
+            </Grid> 
+            </Grid>
             </Grid>
         </div>
     )
 }
 
-function TaskBar (){
-  return(
-    <div className="pt-5">
-      <Grid container direction="row" justifyContent="center" alignItems="center" item xs="auto" spacing={4} >
-      
-      <Grid item xs="auto">
-        <div className="text-center text-sm">
-        <button><img src="/icons/icons8-chef-hat-30.png" className=" m-auto"/><p>Chef's Kitchen</p></button>
-        </div>
-      </Grid>
-      <Grid item xs="auto">
-        <div className="text-center text-sm">
-        <button><img src="/icons/icons8-diamond-heart-30.png" className=" m-auto"/><p>Luxury</p></button>
-        </div>
-      </Grid>
-      <Grid item xs="auto">
-        <div className="text-center text-sm">
-        <button><img src="/icons/icons8-mountain-30.png" className=" m-auto"/><p>Mountains</p></button>
-        </div>
-      </Grid>
-      <Grid item xs="auto">
-        <div className="text-center text-sm">
-        <button><img src="/icons/icons8-water-element-30.png" className=" m-auto"/><p>Pool</p></button>
-        </div>
-      </Grid>
-      </Grid>   
-    </div>
-  )
-}
-
-function AvatarChip() {
-  return (
-    <div className="p-3 mw-sm">
-      <div className="place-items-start">
-      <Chip avatar={<Avatar>U</Avatar>} label="User"/>
-      </div>
-    </div>
-  );
-}
-
 class HouseOne extends React.Component{
 
-    constructor(props){
-      super(props)
-      
-      this.state = {
-        houses: []
-      }
-    } 
+  constructor(props){
+    super(props)
     
-    componentDidMount(){
-      var houses = {
-        method: 'GET',
-        url: 'https://planets.pythonanywhere.com/houses/',
-        Allow: 'GET, POST, HEAD, OPTIONS',
-        Vary: 'Accept',
-        headers: {
-            "Content-type": "application/json",
-        }
-      };
-      axios.request(houses)
-      .then(response=>{
-        this.setState({
-            houses: response.data
-        })
-        console.log(response.data)
-      })
+    this.state = {
+      houses: []
     }
-    render(){
-      if(!this.state.houses[0]){
-        return(
-            <p>Loading</p>
-        )
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
       }
-      if(this.state.houses[0]){
-        
-        return(
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      
+      return(
         <div className="p-4">
-        <Link href='./homes/first'><button type="button" >
+        <Link href='./homes/fourth'><button type="button" >
         <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
-        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseOne/homeOne.webp" title="Picture" alt="pic"/>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseSix/homeSix.webp" title="Picture" alt="pic"/>
         <CardContent>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
-        <p className="text-medium text-center ">{this.state.houses[3].location}</p>
-        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[3].ratings}</p>
+        <p style={{marginRight: '32px'}}className="text-medium text-center">{this.state.houses[0].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[0].ratings}</p>
         </Stack>
         <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
           <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
-          <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
-          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[3].price}</p>  
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[0].price}</p>  
         </Stack>
         </CardContent>  
         </Card>
@@ -163,8 +143,8 @@ class HouseOne extends React.Component{
         </Link>
         </div>
       )
-    }
   }
+}
 }
 
 class HouseTwo extends React.Component{
@@ -210,13 +190,13 @@ class HouseTwo extends React.Component{
         <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseTwo/homeTwo.webp" title="Picture" alt="pic"/>
         <CardContent>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
-        <p className="text-medium text-center">{this.state.houses[0].location}</p>
-        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[0].ratings}</p>
+        <p className="text-medium text-center">{this.state.houses[1].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[1].ratings}</p>
         </Stack>
         <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
           <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
-          <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
-          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[0].price}</p>  
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[1].price}</p>  
         </Stack>
         </CardContent>  
         </Card>
@@ -230,65 +210,188 @@ class HouseTwo extends React.Component{
 
 class HouseThree extends React.Component{
 
-    constructor(props){
-      super(props)
-      
-      this.state = {
-        houses: []
-      }
-    } 
+  constructor(props){
+    super(props)
     
-    componentDidMount(){
-      var houses = {
-        method: 'GET',
-        url: 'https://planets.pythonanywhere.com/houses/',
-        Allow: 'GET, POST, HEAD, OPTIONS',
-        Vary: 'Accept',
-        headers: {
-            "Content-type": "application/json",
-        }
-      };
-      axios.request(houses)
-      .then(response=>{
-        this.setState({
-            houses: response.data
-        })
-        console.log(response.data)
-      })
+    this.state = {
+      houses: []
     }
-    render(){
-      if(!this.state.houses[0]){
-        return(
-            <p>Loading</p>
-        )
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
       }
-      if(this.state.houses[0]){
-        return(
-          <div className="p-4">
-          <Link href='./homes/third'><button type="button" >
-          <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
-          <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseThree/homeThree.webp" title="Picture" alt="pic"/>
-          <CardContent>
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
-          <p className="text-medium text-center">{this.state.houses[2].location}</p>
-          <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[2].ratings}</p>
-          </Stack>
-          <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
-            <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
-            <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
-            <p className="text-small text-center px-0.5 font-medium">{this.state.houses[2].price}</p>  
-          </Stack>
-          </CardContent>  
-          </Card>
-          </button>
-          </Link>
-          </div>
-        )
-    }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
   }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      
+      return(
+        <div className="p-4">
+        <Link href='./homes/fourth'><button type="button" >
+        <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseFive/homeFive.webp" title="Picture" alt="pic"/>
+        <CardContent>
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+        <p style={{marginRight: '20px'}}className="text-medium text-center">{this.state.houses[2].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[1].ratings}</p>
+        </Stack>
+        <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+          <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[2].price}</p>  
+        </Stack>
+        </CardContent>  
+        </Card>
+        </button>
+        </Link>
+        </div>
+      )
+  }
+}
 }
 
 class HouseFour extends React.Component{
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      
+      return(
+        <div className="p-4">
+        <Link href='./homes/fourth'><button type="button" >
+        <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseEight/homeEight.webp" title="Picture" alt="pic"/>
+        <CardContent>
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+        <p style={{marginLeft: '-25px'}}className="text-medium text-center">{this.state.houses[3].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[3].ratings}</p>
+        </Stack>
+        <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+          <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[3].price}</p>  
+        </Stack>
+        </CardContent>  
+        </Card>
+        </button>
+        </Link>
+        </div>
+      )
+  }
+}
+}
+
+class HouseFive extends React.Component{
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      
+      return(
+        <div className="p-4">
+        <Link href='./homes/fourth'><button type="button" >
+        <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseSeven/homeSeven.webp" title="Picture" alt="pic"/>
+        <CardContent>
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+        <p style={{marginRight: '55px'}}className="text-medium text-center">{this.state.houses[4].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[4].ratings}</p>
+        </Stack>
+        <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+          <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[4].price}</p>  
+        </Stack>
+        </CardContent>  
+        </Card>
+        </button>
+        </Link>
+        </div>
+      )
+  }
+}
+}
+
+class HouseSix extends React.Component{
 
     constructor(props){
       super(props)
@@ -331,13 +434,13 @@ class HouseFour extends React.Component{
           <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseFour/homeFour.webp" title="Picture" alt="pic"/>
           <CardContent>
           <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
-          <p style={{marginRight: '8px'}}className="text-medium text-center">{this.state.houses[1].location}</p>
-          <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[1].ratings}</p>
+          <p style={{marginRight: '10px'}}className="text-medium text-center">{this.state.houses[5].location}</p>
+          <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[5].ratings}</p>
           </Stack>
           <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
             <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
-            <p className="text-small text-center px-0.5 opacity-75 mb-1">Apr 3 - 9</p>         
-            <p className="text-small text-center px-0.5 font-medium">{this.state.houses[1].price}</p>  
+            <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+            <p className="text-small text-center px-0.5 font-medium">{this.state.houses[5].price}</p>  
           </Stack>
           </CardContent>  
           </Card>
@@ -347,5 +450,126 @@ class HouseFour extends React.Component{
         )
     }
   }
+}
+
+class HouseSeven extends React.Component{
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      return(
+        <div className="p-4">
+        <Link href='./homes/third'><button type="button" >
+        <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+        <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseThree/homeThree.webp" title="Picture" alt="pic"/>
+        <CardContent>
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+        <p style={{marginRight: '-3px'}} className="text-medium text-center">{this.state.houses[6].location}</p>
+        <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[6].ratings}</p>
+        </Stack>
+        <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+          <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+          <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+          <p className="text-small text-center px-0.5 font-medium">{this.state.houses[6].price}</p>  
+        </Stack>
+        </CardContent>  
+        </Card>
+        </button>
+        </Link>
+        </div>
+      )
+  }
+}
+}
+
+class HouseEight extends React.Component{
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      
+      return(
+      <div className="p-4">
+      <Link href='./homes/first'><button type="button" >
+      <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
+      <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseOne/homeOne.webp" title="Picture" alt="pic"/>
+      <CardContent>
+      <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
+      <p className="text-medium text-center ">{this.state.houses[7].location}</p>
+      <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{this.state.houses[7].ratings}</p>
+      </Stack>
+      <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
+        <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
+        <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
+        <p className="text-small text-center px-0.5 font-medium">{this.state.houses[7].price}</p>  
+      </Stack>
+      </CardContent>  
+      </Card>
+      </button>
+      </Link>
+      </div>
+    )
+  }
+}
 }
 export default houses

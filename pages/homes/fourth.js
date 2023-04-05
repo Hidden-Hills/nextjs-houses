@@ -569,7 +569,7 @@ class IconDescriptors extends React.Component{
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
-        <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[3].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
+        <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[1].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         </Paper>
       </div>
