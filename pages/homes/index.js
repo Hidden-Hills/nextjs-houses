@@ -326,9 +326,9 @@ class HouseFour extends React.Component{
         
         return(
           <div className="p-4">
-          <Link href='./homes/first'><button type="button" >
+          <Link href='./homes/fourth'><button type="button" >
           <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
-          <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/images/homeFour.webp" title="Picture" alt="pic"/>
+          <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseFour/homeFour.webp" title="Picture" alt="pic"/>
           <CardContent>
           <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
           <p style={{marginRight: '8px'}}className="text-medium text-center">{this.state.houses[1].location}</p>
