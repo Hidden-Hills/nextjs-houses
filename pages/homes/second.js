@@ -25,42 +25,137 @@ import ImageListItem from '@mui/material/ImageListItem';
 function houseTwo(){
     return(
         <div className="-space-y-6">
-            <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-            <Paper elevation={0} sx={{width: '100%', maxWidth: '1100', height: 'auto'}} className="bg-white">
-            <HouseInformation/>
-            </Paper>
-            </Stack>
-            <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px', position: ''}} className="">
-            <Grid container direction="row" justifyContent="center" alignItems="center">
-            <HouseDescription/>
-            <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
-            <div className="space-y-4 ">
-            <SetDate/>
-            <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
-            <div className="text-center font-small text-stone-800 ">Fees</div>
-            </div>
-            <div className="flex space-x-32">
-            <div className="text-black font-light	text-center text-decoration-line: underline"><NightFeesModal/></div>
-            <div className="text-black text-medium">$2,570</div>
-            </div>
-            <div className="flex space-x-40">
-            <div className="text-black	text-center text-decoration-line: underline"><CleaningFeesModal/></div>
-            <div className="text-black text-medium">$180</div>
-            </div><div className="flex space-x-44">
-            <div className="text-black font-light	text-center text-decoration-line: underline"><ServiceFeeModal/></div>
-            <div className="text-black text-medium">$98</div>
-            </div>
-            <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9'}} orientation="horizontal" flexItem/>
-            <div className="flex">
-            <div className="text-black text-center font-semibold">Total before taxes</div>
-            <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$2,848</div>
-            </div>
-            </Paper>
-            </Grid>
-            </Stack>
+          <HouseTwo/>
         </div>
     )
 }
+
+class HouseTwo extends React.Component{
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      houses: []
+    }
+  } 
+  
+  componentDidMount(){
+    var houses = {
+      method: 'GET',
+      url: 'https://planets.pythonanywhere.com/houses/',
+      Allow: 'GET, POST, HEAD, OPTIONS',
+      Vary: 'Accept',
+      headers: {
+          "Content-type": "application/json",
+      }
+    };
+    axios.request(houses)
+    .then(response=>{
+      this.setState({
+          houses: response.data
+      })
+      console.log(response.data)
+    })
+  }
+  render(){
+    if(!this.state.houses[0]){
+      return(
+          <p>Loading</p>
+      )
+    }
+    if(this.state.houses[0]){
+      return(
+      <div style={{padding: '20px'}}>
+      <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
+      <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto'}} className="bg-white">
+      <div className="flex flex-row justify-center items-center relative">
+      <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
+      <div>
+      <img src="/houseTwo/homeTwo.webp" alt="image1" className="rounded-lg"/>
+      <div class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></div>
+      </div>
+      </Paper>
+      </div>
+      </Paper>
+      </Stack>
+      <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px', position: ''}} className="">
+      <Grid container direction="row" justifyContent="center" alignItems="center">
+      <div className="text-center" style={{marginRight: '90px'}}>  
+      <div> 
+      <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2}>
+      <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
+      <CardContent>
+      <p className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire home hosted by Hideaway</p>
+      <Stack direction="row" alignItems="center" className="space-x-2">
+      <p className="text-medium text-left">{this.state.houses[1].maxGuests} guests</p>
+      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
+      <p className="text-medium text-left">{this.state.houses[1].bedRooms} bedrooms</p>
+      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
+      <p className="text-medium text-left">{this.state.houses[1].bedRooms} beds</p>
+      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
+      <p className="text-medium text-left">{this.state.houses[1].bathRooms} baths</p>
+      </Stack>
+      <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
+      <div className="space-y-6">
+      <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+      <img src='/icons/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Self check-in</p>
+      </Stack>
+      <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+      <img src='/icons/icons8-gold-medal-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Hideaway is a Superhost</p>
+      </Stack>
+      <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+      <img src='/icons/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Free cancellation for 48 hours</p>
+      </Stack>  
+      <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
+      <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
+      <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[1].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
+      <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
+      </Paper>
+      </div>
+      <div className="pt-5"> 
+      <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
+      <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
+      <img src="/icons/icons8-star-filled-20.png" alt="star"/><p className="text-lg">{this.state.houses[1].ratings}</p>
+      <Stack direction="row" alignItems="center" spacing={0.5}><FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/> <ReviewsModal/></Stack>
+      </Stack>
+      </Paper>
+      </div>
+      </CardContent>
+      </Paper>
+      </Stack>
+      </div> 
+      </div>
+      <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
+      <div className="space-y-4 ">
+      <SetDate/>
+      <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
+      <div className="text-center font-small text-stone-800 ">Fees</div>
+      </div>
+      <div className="flex space-x-32">
+      <div className="text-black font-light	text-center text-decoration-line: underline"><NightFeesModal/></div>
+      <div className="text-black text-medium">$2,570</div>
+      </div>
+      <div className="flex space-x-40">
+      <div className="text-black	text-center text-decoration-line: underline"><CleaningFeesModal/></div>
+      <div className="text-black text-medium">$180</div>
+      </div><div className="flex space-x-44">
+      <div className="text-black font-light	text-center text-decoration-line: underline"><ServiceFeeModal/></div>
+      <div className="text-black text-medium">$85</div>
+      </div>
+      <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9'}} orientation="horizontal" flexItem/>
+      <div className="flex">
+      <div className="text-black text-center font-semibold">Total before taxes</div>
+      <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$2,835</div>
+      </div>
+      </Paper>
+      </Grid>
+      </Stack>
+      </div>  
+    )
+  }
+}
+}
+
 const theme = createTheme({
     status: {
       danger: '#e53e3e',
@@ -174,18 +269,7 @@ function StandardImageList() {
   );
 }
 
-function MainPicture(){
-  return(
-    <div className="flex flex-row justify-center items-center relative pt-8 ">
-    <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
-        <div>
-          <img src="/houseTwo/homeTwo.webp" alt="image1" className="rounded-lg"/>
-          <button class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></button>
-        </div>
-    </Paper>
-    </div>
-)
-}
+
 
 function NightFeesModal() {
     const [open, setOpen] = React.useState(false);
@@ -327,268 +411,6 @@ function SetDate() {
       </LocalizationProvider>
       </Stack>
     );
-}
-
-class HouseInformation extends React.Component{
-
-    constructor(props){
-      super(props)
-      
-      this.state = {
-        houses: []
-      }
-    } 
-    
-    componentDidMount(){
-      var houses = {
-        method: 'GET',
-        url: 'https://planets.pythonanywhere.com/houses/',
-        Allow: 'GET, POST, HEAD, OPTIONS',
-        Vary: 'Accept',
-        headers: {
-            "Content-type": "application/json",
-        }
-      };
-      axios.request(houses)
-      .then(response=>{
-        this.setState({
-            houses: response.data
-        })
-        console.log(response.data)
-      })
-    }
-    render(){
-      if(!this.state.houses[0]){
-        return(
-            <p>Loading</p>
-        )
-      }
-      if(this.state.houses[0]){
-        return(
-        <div className=""> 
-          <MainPicture/>
-          <Paper elevation={0} sx={{width: '100%', maxWidth: '400px', height: 'auto', minHeight: '400', margin: 'auto'}}>
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} sx={{paddingTop: '10px'}}></Stack>
-          </Paper>
-        </div>
-        )
-    }
-  }
-}
-class HouseDescription extends React.Component{
-
-  constructor(props){
-    super(props)
-    
-    this.state = {
-      houses: []
-    }
-  } 
-  
-  componentDidMount(){
-    var houses = {
-      method: 'GET',
-      url: 'https://planets.pythonanywhere.com/houses/',
-      Allow: 'GET, POST, HEAD, OPTIONS',
-      Vary: 'Accept',
-      headers: {
-          "Content-type": "application/json",
-      }
-    };
-    axios.request(houses)
-    .then(response=>{
-      this.setState({
-          houses: response.data
-      })
-      console.log(response.data)
-    })
-  }
-  render(){
-    if(!this.state.houses[0]){
-      return(
-          <p>Loading</p>
-      )
-    }
-    if(this.state.houses[0]){
-      return(
-      <div className="text-center" style={{marginRight: '90px'}}>  
-      <MainElement/> 
-      </div>
-      )
-  }
-}
-}
-
-class MainElement extends React.Component{
-
-  constructor(props){
-    super(props)
-    
-    this.state = {
-      houses: []
-    }
-  } 
-  
-  componentDidMount(){
-    var houses = {
-      method: 'GET',
-      url: 'https://planets.pythonanywhere.com/houses/',
-      Allow: 'GET, POST, HEAD, OPTIONS',
-      Vary: 'Accept',
-      headers: {
-          "Content-type": "application/json",
-      }
-    };
-    axios.request(houses)
-    .then(response=>{
-      this.setState({
-          houses: response.data
-      })
-      console.log(response.data)
-    })
-  }
-  render(){
-    if(!this.state.houses[0]){
-      return(
-          <p>Loading</p>
-      )
-    }
-    if(this.state.houses[0]){
-      return(
-      <div> 
-      <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2}>
-      <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
-      <CardContent>
-      <p className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire home hosted by Hideaway</p>
-      <Stack direction="row" alignItems="center" className="space-x-2">
-      <p className="text-medium text-left">{this.state.houses[0].maxGuests} guests</p>
-      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[0].bedRooms} bedrooms</p>
-      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[0].bedRooms} beds</p>
-      <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[0].bathRooms} baths</p>
-      </Stack>
-
-      <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
-
-      <IconDescriptors/>
-
-      <HouseReviews/>
-      
-      </CardContent>
-      </Paper>
-      </Stack>
-      </div>
-      )
-  }
-}
-}
-
-class HouseReviews extends React.Component{
-    constructor(props){
-        super(props)
-        
-        this.state = {
-          houses: []
-        }
-      } 
-      
-      componentDidMount(){
-        var houses = {
-          method: 'GET',
-          url: 'https://planets.pythonanywhere.com/houses/',
-          Allow: 'GET, POST, HEAD, OPTIONS',
-          Vary: 'Accept',
-          headers: {
-              "Content-type": "application/json",
-          }
-        };
-        axios.request(houses)
-        .then(response=>{
-          this.setState({
-              houses: response.data
-          })
-          console.log(response.data)
-        })
-      }
-      render(){
-        if(!this.state.houses[0]){
-          return(
-              <p>Loading</p>
-          )
-        }
-        if(this.state.houses[0]){
-          return(
-          <div className="pt-5"> 
-          <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
-          <img src="/icons/icons8-star-filled-20.png" alt="star"/><p className="text-lg">{this.state.houses[0].ratings}.0</p>
-          <Stack direction="row" alignItems="center" spacing={0.5}><FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/> <ReviewsModal/></Stack>
-          </Stack>
-          </Paper>
-          
-          </div>
-          )
-      }
-    }
-}
-
-class IconDescriptors extends React.Component{
-  constructor(props){
-    super(props)
-    
-    this.state = {
-      houses: []
-    }
-  } 
-  
-  componentDidMount(){
-    var houses = {
-      method: 'GET',
-      url: 'https://planets.pythonanywhere.com/houses/',
-      Allow: 'GET, POST, HEAD, OPTIONS',
-      Vary: 'Accept',
-      headers: {
-          "Content-type": "application/json",
-      }
-    };
-    axios.request(houses)
-    .then(response=>{
-      this.setState({
-          houses: response.data
-      })
-      console.log(response.data)
-    })
-  }
-  render(){
-    if(!this.state.houses[0]){
-      return(
-          <p>Loading</p>
-      )
-    }
-    if(this.state.houses[0]){
-      return(
-        <div className="space-y-6">
-        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/icons/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Self check-in</p>
-        </Stack>
-        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/icons/icons8-gold-medal-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Hideaway is a Superhost</p>
-        </Stack>
-        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/icons/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Free cancellation for 48 hours</p>
-        </Stack>
-        <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
-        <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
-        <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[0].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
-        </Paper>
-        <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
-        
-      </div>
-      )
-  }
-}
 }
 
 export default houseTwo
