@@ -1,5 +1,4 @@
 import React from "react"
-import axios from "axios"
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -15,6 +14,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { createTheme } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { useEffect, useState } from "react";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'react-calendar/dist/Calendar.css';
 import Avatar from '@mui/material/Avatar';
@@ -30,43 +30,11 @@ function houseOne(){
     )
 }
 
-// House Eight and One will swap
 
-class HouseOne extends React.Component{
-    constructor(props){
-      super(props)
-      
-      this.state = {
-        houses: []
-      }
-    } 
-    
-    componentDidMount(){
-      var houses = {
-        method: 'GET',
-        url: 'https://planets.pythonanywhere.com/houses/',
-        Allow: 'GET, POST, HEAD, OPTIONS',
-        Vary: 'Accept',
-        headers: {
-            "Content-type": "application/json",
-        }
-      };
-      axios.request(houses)
-      .then(response=>{
-        this.setState({
-            houses: response.data
-        })
-        console.log(response.data)
-      })
-    }
-    render(){
-      if(!this.state.houses[0]){
-        return(
-            <p>Loading</p>
-        )
-      }
-      if(this.state.houses[0]){
-        return(
+function HouseOne(){
+  const [data, setData] = useState([])
+  useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/1/').then((response) => response.json()).then((data) => setData(data))},[])
+    return(
         <div style={{padding: '20px'}}>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto'}} className="bg-white">
@@ -87,37 +55,37 @@ class HouseOne extends React.Component{
         <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2}>
         <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
         <CardContent>
-        <p className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire villa hosted by Sherry</p>
+        <div className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire villa hosted by Sherry</div>
         <Stack direction="row" alignItems="center" className="space-x-2">
-        <p className="text-medium text-left">{this.state.houses[7].maxGuests} guests</p>
+        <div className="text-medium text-left">{data.maxGuests} guests</div>
         <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-        <p className="text-medium text-left">{this.state.houses[7].bedRooms} bedrooms</p>
+        <div className="text-medium text-left">{data.bedRooms} bedrooms</div>
         <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-        <p className="text-medium text-left">{this.state.houses[7].bedRooms} beds</p>
+        <div className="text-medium text-left">{data.bedRooms} beds</div>
         <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-        <p className="text-medium text-left">{this.state.houses[7].bathRooms} baths</p>
+        <div className="text-medium text-left">{data.bathRooms} baths</div>
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <div className="space-y-6">
           <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/icons/icons8-home-office-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Dedicated workspace</p>
+        <img src='/icons/icons8-home-office-25.png' alt="home office" className="text-left max-w-full h-full"/><div>Dedicated workspace</div>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/icons/icons8-open-door-25.png' alt="open door" className="text-center max-w-full h-full"/><p>Self check-in</p>
+        <img src='/icons/icons8-open-door-25.png' alt="open door" className="text-center max-w-full h-full"/><div>Self check-in</div>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <img src='/icons/icons8-important-month-25.png' alt="important month" className="text-center max-w-full h-full"/><p>Free cancellation</p>
+        <img src='/icons/icons8-important-month-25.png' alt="important month" className="text-center max-w-full h-full"/><div>Free cancellation</div>
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
-        <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[7].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
+        <div className="text-medium text-center max-w-lg	m-auto ">{data.description}...<div className="text-medium text-decoration-line: underline"><FullHomeDescription/></div></div>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         </Paper>
         </div>
         <div className="pt-5"> 
         <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
-        <img src="/icons/icons8-star-filled-20.png" alt="star"/><p className="text-lg">{this.state.houses[7].ratings}</p>
+        <img src="/icons/icons8-star-filled-20.png" alt="star"/><div className="text-lg">{data.ratings}</div>
         <Stack direction="row" alignItems="center" spacing={0.5}><FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/> <ReviewsModal/></Stack>
         </Stack>
         </Paper>
@@ -154,9 +122,8 @@ class HouseOne extends React.Component{
         </Stack>
         </div>  
       )
-    }
-  }
 }
+
   
 const theme = createTheme({
     status: {
@@ -346,9 +313,9 @@ function ReviewsModal(){
         <Box sx={style}>
           <div className="grid grid-cols-1">
           <Stack direction="row" spacing={2}>
-          <Avatar>D</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Donovan<br></br><p className="opacity-75">April 2023</p></p>
+          <Avatar>D</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Donovan<br></br><div className="opacity-75">April 2023</div></div>
           </Stack>
-          <p className="pt-4">Amazing stay, definetly enjoyed it here!</p>
+          <div className="pt-4">Amazing stay, definetly enjoyed it here!</div>
           </div>
         </Box>
       </Modal>

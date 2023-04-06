@@ -16,6 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
+import { useEffect, useState } from "react";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Avatar from '@mui/material/Avatar';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -30,40 +31,9 @@ function houseTwo(){
     )
 }
 
-class HouseTwo extends React.Component{
-  constructor(props){
-    super(props)
-    
-    this.state = {
-      houses: []
-    }
-  } 
-  
-  componentDidMount(){
-    var houses = {
-      method: 'GET',
-      url: 'https://planets.pythonanywhere.com/houses/',
-      Allow: 'GET, POST, HEAD, OPTIONS',
-      Vary: 'Accept',
-      headers: {
-          "Content-type": "application/json",
-      }
-    };
-    axios.request(houses)
-    .then(response=>{
-      this.setState({
-          houses: response.data
-      })
-      console.log(response.data)
-    })
-  }
-  render(){
-    if(!this.state.houses[0]){
-      return(
-          <p>Loading</p>
-      )
-    }
-    if(this.state.houses[0]){
+function HouseTwo(){
+  const [data, setData] = useState([])
+  useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/2/').then((response) => response.json()).then((data) => setData(data))},[])
       return(
       <div style={{padding: '20px'}}>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
@@ -85,37 +55,37 @@ class HouseTwo extends React.Component{
       <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2}>
       <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
       <CardContent>
-      <p className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire home hosted by Hideaway</p>
+      <div className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire home hosted by Hideaway</div>
       <Stack direction="row" alignItems="center" className="space-x-2">
-      <p className="text-medium text-left">{this.state.houses[1].maxGuests} guests</p>
+      <div className="text-medium text-left">{data.maxGuests} guests</div>
       <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[1].bedRooms} bedrooms</p>
+      <div className="text-medium text-left">{data.bedRooms} bedrooms</div>
       <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[1].bedRooms} beds</p>
+      <div className="text-medium text-left">{data.bedRooms} beds</div>
       <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
-      <p className="text-medium text-left">{this.state.houses[1].bathRooms} baths</p>
+      <div className="text-medium text-left">{data.bathRooms} baths</div>
       </Stack>
       <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
       <div className="space-y-6">
       <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-      <img src='/icons/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Self check-in</p>
+      <img src='/icons/icons8-open-door-25.png' alt="home office" className="text-center max-w-full h-full"/><div>Self check-in</div>
       </Stack>
       <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-      <img src='/icons/icons8-gold-medal-25.png' alt="home office" className="text-left max-w-full h-full"/><p>Hideaway is a Superhost</p>
+      <img src='/icons/icons8-gold-medal-25.png' alt="home office" className="text-left max-w-full h-full"/><div>Hideaway is a Superhost</div>
       </Stack>
       <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-      <img src='/icons/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><p>Free cancellation for 48 hours</p>
+      <img src='/icons/icons8-important-month-25.png' alt="home office" className="text-center max-w-full h-full"/><div>Free cancellation for 48 hours</div>
       </Stack>  
       <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
       <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
-      <p className="text-medium text-center max-w-lg	m-auto ">{this.state.houses[1].description}...<p className="text-medium text-decoration-line: underline"><FullHomeDescription/></p></p>
+      <div className="text-medium text-center max-w-lg	m-auto ">{data.description}...<div className="text-medium text-decoration-line: underline"><FullHomeDescription/></div></div>
       <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
       </Paper>
       </div>
       <div className="pt-5"> 
       <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
-      <img src="/icons/icons8-star-filled-20.png" alt="star"/><p className="text-lg">{this.state.houses[1].ratings}</p>
+      <img src="/icons/icons8-star-filled-20.png" alt="star"/><div className="text-lg">{data.ratings}</div>
       <Stack direction="row" alignItems="center" spacing={0.5}><FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/> <ReviewsModal/></Stack>
       </Stack>
       </Paper>
@@ -152,8 +122,6 @@ class HouseTwo extends React.Component{
       </Stack>
       </div>  
     )
-  }
-}
 }
 
 const theme = createTheme({
@@ -343,17 +311,17 @@ function ReviewsModal(){
           <Box sx={style}>
             <div className="grid grid-cols-1">
             <Stack direction="row" spacing={2}>
-            <Avatar>J</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>James<br></br><p className="opacity-75">April 2023</p></p>
+            <Avatar>J</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>James<br></br><div className="opacity-75">April 2023</div></div>
             </Stack>
-            <p className="pt-4 pb-8">A quiet oasis perfect for relaxing.</p>
+            <div className="pt-4 pb-8">A quiet oasis perfect for relaxing.</div>
             <Stack direction="row" spacing={2}>
-            <Avatar>K</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Kimberly<br></br><p className="opacity-75">April 2023</p></p>
+            <Avatar>K</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Kimberly<br></br><div className="opacity-75">April 2023</div></div>
             </Stack>
-            <p className="pt-4 pb-8">Modern beautiful space.</p>
+            <div className="pt-4 pb-8">Modern beautiful space.</div>
             <Stack direction="row" spacing={2}>
-            <Avatar>T</Avatar><p style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Thomas<br></br><p className="opacity-75">April 2023</p></p>
+            <Avatar>T</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Thomas<br></br><div className="opacity-75">April 2023</div></div>
             </Stack>
-            <p className="pt-4 pb-8">Beautiful and spacious property. Super clean space. Amazing backyard!</p>
+            <div className="pt-4 pb-8">Beautiful and spacious property. Super clean space. Amazing backyard!</div>
             </div>
           </Box>
         </Modal>
