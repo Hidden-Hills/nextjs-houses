@@ -22,6 +22,7 @@ import Avatar from '@mui/material/Avatar';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import Backdrop from '@mui/material/Backdrop';
 
 function houseTwo(){
     return(
@@ -32,6 +33,13 @@ function houseTwo(){
 }
 
 function HouseTwo(){
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
   const [data, setData] = useState([])
   useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/2/').then((response) => response.json()).then((data) => setData(data))},[])
       return(
@@ -97,8 +105,22 @@ function HouseTwo(){
       </div>
       <Paper elevation={2} sx={{width: '100%', maxWidth: '350px', height: 'auto'}}  className="text-center text-white py-2 px-4 space-y-4 ">
       <div className="space-y-4 ">
-      <SetDate/>
-      <button className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
+      <div>
+      <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker label="Start Date" id="start_date" disablePast="true" className="pb-5" />
+      <DatePicker label="End Date"  id="end_date" disablePast="true" minDate={tomorrow} className="pb-5" />
+      </LocalizationProvider>
+      </Stack>
+      <button onClick={handleToggle} className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open} onClick={handleClose}>
+      <Box sx={style} >
+      <div className="space-y-6">
+      <div className="text-center text-black" sx={{ mt: 2 }}>{data.title} Booked!</div>
+      </div>
+      </Box>
+      </Backdrop>
+      </div>
       <div className="text-center font-small text-stone-800 ">Fees</div>
       </div>
       <div className="flex space-x-32">
