@@ -1,6 +1,6 @@
 Airbnb Mockup
 
-Stact Used
+Stack Used
 - MongoDB
 - Django
 - Next.js & TailwindCSS
