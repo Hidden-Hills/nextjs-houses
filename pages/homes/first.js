@@ -23,7 +23,6 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Backdrop from '@mui/material/Backdrop';
 import Image from "next/image"
-import 'flowbite';
 
 
 function houseOne(){
