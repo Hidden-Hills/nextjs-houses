@@ -216,7 +216,7 @@ function HouseSeven(){
   useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/7/').then((response) => response.json()).then((data) => setData(data))},[])
   return(
     <div className="p-4">
-        <Link href='./homes/fifth'><button type="button" >
+        <Link href='./homes/seventh'><button type="button" >
         <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
         <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseSeven/homeSeven.webp" title="Picture" alt="pic"/>
         <CardContent>
@@ -242,7 +242,7 @@ function HouseEight(){
   useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/8/').then((response) => response.json()).then((data) => setData(data))},[])
   return(
     <div className="p-4">
-        <Link href='./homes/fifth'><button type="button" >
+        <Link href='./homes/eighth'><button type="button" >
         <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
         <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseEight/homeEight.webp" title="Picture" alt="pic"/>
         <CardContent>
