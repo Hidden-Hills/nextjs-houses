@@ -331,7 +331,7 @@ const ReviewsModal = () =>{
 
   return (
     <div>
-      <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">1 Review</button>
+      <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">2 Reviews</button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
         <Box sx={style}>
           <div className="grid grid-cols-1">
