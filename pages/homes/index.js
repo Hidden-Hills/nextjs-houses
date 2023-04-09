@@ -1,6 +1,5 @@
 import * as React from "react"
 import Link from "next/link"
-import axios from "axios"
 import StarIcon from '@mui/icons-material/Star';
 import { grey } from '@mui/material/colors';
 import Card from '@mui/material/Card';
@@ -9,36 +8,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import { useEffect, useState } from "react";
 import Stack from '@mui/material/Stack';
-import { createTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
-
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 200,
-  bgcolor: 'background.paper',
-  borderRadius: '10px',
-  boxShadow: 24,
-  p: 4,
-};
-const theme = createTheme({
-  status: {
-    danger: '#e53e3e',
-  },
-  palette: {
-    primary: {
-      main: '#212121',
-      darker: '#053e85',
-    },
-    neutral: {
-      main: '#27272a',
-      contrastText: '#fff',
-    },
-  },
-});
 
 
 

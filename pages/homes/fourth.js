@@ -7,6 +7,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ImageList from '@mui/material/ImageList';
+import Link from "next/link"
 import ImageListItem from '@mui/material/ImageListItem';
 import Divider from '@mui/material/Divider';
 import CardContent from '@mui/material/CardContent';
@@ -43,7 +44,10 @@ function HouseFour(){
     const [data, setData] = useState([])
     useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/4/').then((response) => response.json()).then((data) => setData(data))},[])
         return(
-        <div style={{padding: '20px'}}>
+        <div>
+        <div class="relative h-10 w-10 p-8"><div class="absolute left-0 top-0 h-2 w-2 pl-4 pt-5">
+        <Link href="/homes"><input type="image" src="/icons/icons8-back-arrow-30.png" alt="star"></input></Link></div>
+        </div>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto'}} className="bg-white">
         <div className="flex flex-row justify-center items-center relative">
@@ -108,8 +112,8 @@ function HouseFour(){
         <div>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker label="Start Date" id="start_date" disablePast="true" className="pb-5" />
-        <DatePicker label="End Date"  id="end_date" disablePast="true" minDate={tomorrow} className="pb-5" />
+        <DatePicker label="Start Date" id="start_date" disablePast={true}  className="pb-5" />
+        <DatePicker label="End Date"  id="end_date" disablePast={true}  minDate={tomorrow} className="pb-5" />
         </LocalizationProvider>
         </Stack>
         <button onClick={handleToggle} className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
@@ -221,7 +225,7 @@ const itemData = [
 ]
 const tomorrow = dayjs().add(1, 'day');
 
-function srcset(image, width, height, rows = 1, cols = 1) {
+const srcset = (image, width, height, rows = 1, cols = 1) =>{
   return {
     src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
     srcSet: `${image}?w=${width * cols}&h=${
@@ -230,7 +234,7 @@ function srcset(image, width, height, rows = 1, cols = 1) {
   };
 }
 
-function StandardImageList() {
+const StandardImageList = () =>{
   return (
     <ImageList
       sx={{
@@ -261,7 +265,7 @@ function StandardImageList() {
   );
 }
 
-function NightFeesModal() {
+const NightFeesModal = () =>{
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -281,7 +285,7 @@ function NightFeesModal() {
     );
 }  
 
-function HospitalityFeeModal() {
+const HospitalityFeeModal = () =>{
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -301,7 +305,7 @@ function HospitalityFeeModal() {
     );
 }
 
-function StealthModal() {
+const StealthModal = () =>{
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -319,29 +323,33 @@ function StealthModal() {
     );
 }
 
-function ReviewsModal(){
+const ReviewsModal = () =>{
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">1 Review</button>
+      <button onClick={handleOpen} theme={theme} color="primary" className="p-2 text-decoration-line: underline text-lg">2 Reviews</button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
-        <Box sx={style}>
-          <div className="grid grid-cols-1">
-          <Stack direction="row" spacing={2}>
-          <Avatar>D</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Donovan<br></br><div className="opacity-75">April 2023</div></div>
-          </Stack>
-          <div className="pt-4">Amazing stay, definetly enjoyed it here!</div>
-          </div>
-        </Box>
-      </Modal>
+          <Box sx={style}>
+            <div className="grid grid-cols-1">
+            <Stack direction="row" spacing={2}>
+            <Avatar>C</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Connie<br></br><div className="opacity-75">April 2023</div></div>
+            </Stack>
+            <div className="pt-4 pb-8">The house was amazing! It was such a treat for our group to spend time together on this beautiful and well thought out propery. We felt spoiled. Thank you Michael and Mary for being in contact before, during and after the trip. It really made our trip special. We hope that we'll get to stay here again one day.</div>
+            <Stack direction="row" spacing={2}>
+            <Avatar>D</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Dwight<br></br><div className="opacity-75">April 2023</div></div>
+            </Stack>
+            <div className="pt-4 pb-2">Had such a great time in this retreat at Saddle Peak! The pictures don't do it justice, the views are astounding and it feels like living in art. Mary was incredibly helpful in making the stay smooth and hassle free! Looking forward to the next opportunity to visit!</div>
+            </div>
+          </Box>
+        </Modal>
     </div>
   );
 }
 
-function HousePhotosModal(){
+const HousePhotosModal = () =>{
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -360,7 +368,7 @@ function HousePhotosModal(){
   )
 }
 
-function FullHomeDescription(){
+const FullHomeDescription = () =>{
   const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -374,6 +382,8 @@ function FullHomeDescription(){
             <div className="text-left text-2xl font-semibold" sx={{ mt: 2 }}>About this space</div>
             <div className="text-left text-xl font-semibold" sx={{ mt: 2}}>The space</div>
             <div className="text-left text-medium" sx={{ mt: 2 }}>Located in the boho heart of Los Angeles, this secluded home is surrounded by nothing but wild, wide-open space. The ultra modern structure, perched at the edge of a lush escarpment, features an unimpeded view of the rugged countryside from its abundance of full-length windows. The iconic Santa Monica Pier and sprawling seaside at Venice Beach, as well as The Getty Villa, are a short drive away.</div>
+            <div className="text-left text-medium" sx={{ mt: 2 }}>Copyright © Luxury Retreats. All rights reserved.</div>
+
             </div>
           </Box>
         </Modal>

@@ -1,5 +1,4 @@
 import React from "react"
-import axios from "axios"
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -9,6 +8,7 @@ import Divider from '@mui/material/Divider';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Link from "next/link"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { createTheme } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -43,7 +43,10 @@ function HouseTwo(){
   const [data, setData] = useState([])
   useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/2/').then((response) => response.json()).then((data) => setData(data))},[])
       return(
-      <div style={{padding: '20px'}}>
+      <div>
+      <div class="relative h-10 w-10 p-8"><div class="absolute left-0 top-0 h-2 w-2 pl-4 pt-5">
+      <Link href="/homes"><input type="image" src="/icons/icons8-back-arrow-30.png" alt="star"></input></Link></div>
+      </div>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
       <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto'}} className="bg-white">
       <div className="flex flex-row justify-center items-center relative">
@@ -108,8 +111,8 @@ function HouseTwo(){
       <div>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker label="Start Date" id="start_date" disablePast="true" className="pb-5" />
-      <DatePicker label="End Date"  id="end_date" disablePast="true" minDate={tomorrow} className="pb-5" />
+      <DatePicker label="Start Date" id="start_date" disablePast={true}  className="pb-5" />
+      <DatePicker label="End Date"  id="end_date" disablePast={true}  minDate={tomorrow} className="pb-5" />
       </LocalizationProvider>
       </Stack>
       <button onClick={handleToggle} className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
@@ -219,7 +222,7 @@ const itemData = [
 ]
 const tomorrow = dayjs().add(1, 'day');
 
-function srcset(image, width, height, rows = 1, cols = 1) {
+const srcset = (image, width, height, rows = 1, cols = 1) =>{
   return {
     src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
     srcSet: `${image}?w=${width * cols}&h=${
@@ -228,7 +231,7 @@ function srcset(image, width, height, rows = 1, cols = 1) {
   };
 }
 
-function StandardImageList() {
+const StandardImageList = () =>{
   return (
     <ImageList
       sx={{
@@ -259,9 +262,7 @@ function StandardImageList() {
   );
 }
 
-
-
-function NightFeesModal() {
+const NightFeesModal = () =>{
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -281,7 +282,7 @@ function NightFeesModal() {
     );
 }  
 
-function CleaningFeesModal() {
+const CleaningFeesModal = () =>{
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -301,7 +302,7 @@ function CleaningFeesModal() {
   );
 }
 
-function ServiceFeeModal() {
+const ServiceFeeModal = () =>{
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -321,7 +322,7 @@ function ServiceFeeModal() {
   );
 }
 
-function ReviewsModal(){
+const ReviewsModal = () =>{
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -351,7 +352,7 @@ function ReviewsModal(){
     );
 }
 
-function HousePhotosModal(){
+const HousePhotosModal = () =>{
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -370,7 +371,7 @@ function HousePhotosModal(){
     )
 }
 
-function FullHomeDescription(){
+const FullHomeDescription = () =>{
   const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -389,17 +390,6 @@ function FullHomeDescription(){
           </Box>
         </Modal>
       </div>
-    );
-}
-
-function SetDate() {
-    return (
-      <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker label="Start Date" id="start_date" disablePast="true"/>
-        <DatePicker label="End Date"  id="end_date" disablePast="true" minDate={tomorrow} />
-      </LocalizationProvider>
-      </Stack>
     );
 }
 
