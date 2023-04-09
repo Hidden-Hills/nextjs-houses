@@ -8,4 +8,4 @@ Stack Used
 - Next.js & TailwindCSS
 - Node.js
 
-Contains 8 homes from Airbnb's website.
+Contains 8 homes from Airbnb's California listings.
