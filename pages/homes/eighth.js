@@ -22,6 +22,7 @@ import dayjs from 'dayjs';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Backdrop from '@mui/material/Backdrop';
+import Image from "next/image"
 
 function houseSeven(){
     return(
@@ -54,7 +55,7 @@ function HouseSeven(){
         <div className="flex flex-row justify-center items-center relative">
         <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
         <div>
-        <img src="/houseEight/homeEight.webp" alt="image1" className="rounded-lg"/>
+        <Image src="/houseEight/homeEight.webp" alt="image1" className="rounded-lg" width={1000} height={500} maxWidth={1000}/>
         <div class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></div>
         </div>
         </Paper>
@@ -88,7 +89,7 @@ function HouseSeven(){
         <div className="pt-5"> 
         <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
-        <img src="/icons/icons8-star-filled-20.png" alt="star"/><div className="text-lg">{data.ratings}</div>
+        <Image src="/icons/icons8-star-filled-20.png" alt="star" width={20} height={20} maxWidth={20}/><div className="text-lg">{data.ratings}</div>
         <Stack direction="row" alignItems="center" spacing={0.5}><FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/> <ReviewsModal/></Stack>
         </Stack>
         </Paper>
@@ -347,7 +348,7 @@ const HousePhotosModal = () => {
 
   return(
     <div className="overflow-hidden">
-      <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><img src="/icons/icons8-grid-view-22.png" className=""/>Show all photos</Button>
+      <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><Image src="/icons/icons8-grid-view-22.png" className="" width={22} height={22} maxWidth={22}/>Show all photos</Button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
         <Box elevation={0} sx={pictureBox}>
           <div className="grid grid-cols-1 divide-y overflow-hidden">
