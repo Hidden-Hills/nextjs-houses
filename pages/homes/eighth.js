@@ -333,7 +333,7 @@ const ReviewsModal = () =>{
           <Stack direction="row" spacing={2}>
           <Avatar>S</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Scott<br></br><div className="opacity-75">April 2023</div></div>
           </Stack>
-          <div className="pt-4 pb-5">Malibu Rocky Oaks is at a perfect location, a very beautiful house, secluded with amazing views. The place is great, very clean, and has everything you need for a fun-filled weekend in Malibu. The pool and hot tub were so relaxing and the music system was amazing. Walking the fabulous driveway made for a great workout in the morning. Stay a While Villas was also very helpful since the beginning, available at all times whenever I had any questions. Totally recommend MRO.</div>
+          <div className="pt-5 pb-5">Malibu Rocky Oaks is at a perfect location, a very beautiful house, secluded with amazing views. The place is great, very clean, and has everything you need for a fun-filled weekend in Malibu. The pool and hot tub were so relaxing and the music system was amazing. Walking the fabulous driveway made for a great workout in the morning. Stay a While Villas was also very helpful since the beginning, available at all times whenever I had any questions. Totally recommend MRO.</div>
           </div>
         </Box>
       </Modal>
