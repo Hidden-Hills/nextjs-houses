@@ -118,7 +118,7 @@ function HouseOne(){
         <DatePicker label="End Date"  id="end_date" disablePast={true}  minDate={tomorrow} className="pb-10" />
         </LocalizationProvider>
         </Stack>
-        <button onClick={handleToggle} className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
+        <button style={{paddingTop: '10px'}} onClick={handleToggle} className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
         <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open} onClick={handleClose}>
         <Box sx={style} >
         <div className="space-y-6">
