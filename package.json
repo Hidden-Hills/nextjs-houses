@@ -22,12 +22,14 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "flowbite": "^1.6.4",
+    "flowbite-datepicker": "^1.2.2",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-calendar": "^4.0.0",
     "react-dom": "18.2.0",
     "react-responsive-carousel": "^3.2.23",
     "sharp": "^0.32.0",
+    "tailwind-datepicker-react": "^1.2.3",
     "tw-daterange": "^1.1.24"
   },
   "devDependencies": {
