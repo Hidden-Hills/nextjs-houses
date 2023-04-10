@@ -77,7 +77,7 @@ function HouseOne(){
         <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2}>
         <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
         <CardContent>
-        <div className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire villa hosted by Sherry</div>
+        <div className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>{data.entireTitle}</div>
         <Stack direction="row" alignItems="center" className="space-x-2">
         <div className="text-medium text-left">{data.maxGuests} guests</div>
         <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
