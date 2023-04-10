@@ -37,7 +37,7 @@ function houses (){
                     <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize: '23px' }} />{item.ratings}</p>
                   </Stack>
                   <Stack direction="column" justifyContent="center" alignItems="flex-start" >
-                    <p className="text-small text-center px-0.5 opacity-75">100 miles away</p>
+                    <div className="text-small text-center px-0.5 opacity-75">100 miles away</div>
                     <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>
                     <p className="text-small text-center px-0.5 font-medium">{item.price}</p>
                   </Stack>
