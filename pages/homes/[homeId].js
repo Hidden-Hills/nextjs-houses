@@ -54,7 +54,6 @@ function HouseOne(){
     {
       return(
         <div>
-
         <div class="relative h-10 w-10 p-8"><div class="absolute left-0 top-0 h-2 w-2 pl-4 pt-5">
         <Link href="/"><input type="image" src="/icons/icons8-back-arrow-30.png" alt="star"></input></Link></div>
         </div>
@@ -89,7 +88,7 @@ function HouseOne(){
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <div className="space-y-6">
-          <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2} >
+        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2} >
         <Image src='/icons/icons8-home-office-25.png' alt="home office" className="text-left max-w-full h-full" width={25} height={25} maxWidth={25}/><div>Dedicated workspace</div>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
@@ -156,8 +155,6 @@ function HouseOne(){
         </Paper>
         </Grid>
         </Stack>
-    
-        
         </div>  
 
       )  

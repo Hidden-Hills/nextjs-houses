@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import { useEffect, useState } from "react";
 import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -22,9 +23,10 @@ function Houses (){
   const [data, setData] = useState([])
   useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/').then((response) => response.json()).then((data) => setData(data))},[data])
     return(
-        <div className="pt-5">
+        <div className="pt-1">
+        <IconFilters/>
+        <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '10px', marginBottom: '10px'}} orientation="horizontal" flexItem/>
         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={0.5}>      
-
       {data.map((item) => <>
           <Grid item xs="auto" md="auto" lg="3" xl="2.5" sm="auto">  
           <div className="p-4">
@@ -52,6 +54,31 @@ function Houses (){
         </Grid>
         </div>
     )
+}
+
+function IconFilters(){
+  return(
+    <div className="pt-5">
+    <Stack direction="row" justifyContent="center" alignItems="center"spacing={2}>
+    <div className="text-center">
+    <img src="/icons/icons8-diamond-heart-30.png" alt="alt-text" className="block m-auto"/>
+    <p>Luxury</p>
+    </div>
+    <div className="text-center">
+    <img src="/icons/icons8-chef-hat-30.png" alt="alt-text" className="block m-auto"/>
+    <p>Chef Kitchens</p>
+    </div>
+    <div className="text-center">
+    <img src="/icons/icons8-water-element-30.png" alt="alt-text" className="block m-auto"/>
+    <p>Pools</p>
+    </div>
+    <div className="text-center">
+    <img src="/icons/icons8-mountain-30.png" alt="alt-text" className="block m-auto"/>
+    <p>Mountains</p>
+    </div>
+    </Stack>
+    </div>
+  )
 }
 
 export default Houses
