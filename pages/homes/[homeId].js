@@ -56,7 +56,7 @@ function HouseOne(){
         <div>
 
         <div class="relative h-10 w-10 p-8"><div class="absolute left-0 top-0 h-2 w-2 pl-4 pt-5">
-        <Link href="/homes"><input type="image" src="/icons/icons8-back-arrow-30.png" alt="star"></input></Link></div>
+        <Link href="/"><input type="image" src="/icons/icons8-back-arrow-30.png" alt="star"></input></Link></div>
         </div>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto'}} className="bg-white">
