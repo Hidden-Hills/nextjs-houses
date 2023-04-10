@@ -49,6 +49,7 @@ function HouseOne(){
     {
       return(
         <div>
+
         <div class="relative h-10 w-10 p-8"><div class="absolute left-0 top-0 h-2 w-2 pl-4 pt-5">
         <Link href="/homes"><input type="image" src="/icons/icons8-back-arrow-30.png" alt="star"></input></Link></div>
         </div>
@@ -150,8 +151,11 @@ function HouseOne(){
         </Paper>
         </Grid>
         </Stack>
+    
+        
         </div>  
-      )
+
+      )  
 }
 }
   

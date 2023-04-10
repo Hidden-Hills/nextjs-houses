@@ -57,27 +57,32 @@ function houses (){
 
 function HouseOne(){
   const [data, setData] = useState([])
-  useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/1/').then((response) => response.json()).then((data) => setData(data))},[])
+  useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/').then((response) => response.json()).then((data) => setData(data))},[])
   return(
     <div className="p-4">
+      
+      {data.map((item) => <>
       <Link href='./homes/first'><button type="button" >
       <Card sx={{ maxWidth: 300, minWidth: 300, boxShadow: 'none' }}>
       <CardMedia className="rounded-lg" style={{ height: "250px", paddingTop: "2%" }} image="/houseOne/homeOne.webp" title="Picture" alt="pic"/>
       <CardContent>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={8}>
-      <p className="text-medium text-center ">{data.location}</p>
-      <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{data.ratings}</p>
+      <p className="text-medium text-center ">{item.location}</p>
+      <p className="text-small text-center"><StarIcon sx={{ color: grey[900], fontSize:'23px' }}/>{item.ratings}</p>
       </Stack>
       <Stack direction="column" justifyContent="center" alignItems="flex-start" >  
         <p className="text-small text-center px-0.5 opacity-75">100 miles away</p> 
         <p className="text-small text-center px-0.5 opacity-75 mb-1">{monthNames[d.getMonth()]} {today} - {tomorrow}</p>         
-        <p className="text-small text-center px-0.5 font-medium">{data.price}</p>  
+        <p className="text-small text-center px-0.5 font-medium">{item.price}</p>  
       </Stack>
       </CardContent>  
       </Card>
       </button>
       </Link>
+      </>
+      )}
       </div>
+      
   )
 }
 
