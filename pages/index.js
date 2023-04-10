@@ -18,7 +18,7 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep
 const d = new Date();
 
 
-function houses (){
+function Houses (){
   const [data, setData] = useState([])
   useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/').then((response) => response.json()).then((data) => setData(data))},[data])
     return(
@@ -54,4 +54,4 @@ function houses (){
     )
 }
 
-export default houses
+export default Houses
