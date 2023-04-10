@@ -3,7 +3,6 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Link from "next/link"
 import Button from '@mui/material/Button';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -11,6 +10,7 @@ import Divider from '@mui/material/Divider';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Link from "next/link"
 import { createTheme } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -23,30 +23,38 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Backdrop from '@mui/material/Backdrop';
 import Image from "next/image"
+import { useRouter } from "next/router";
+import 'flowbite';
 
-function houseSix(){
+
+function houseOne(){
     return(
         <div>
-            <HouseSix/>
+            <HouseOne/>
         </div>
     )
 }
 
 
-function HouseSix(){
+function HouseOne(){
   
   const [data, setData] = useState([])
   const [open, setOpen] = React.useState(false);
+  const router = useRouter()
+  const homeId = router.query.homeId
+  const url = "https://planets.pythonanywhere.com/houses/" + homeId + "/"
+
   const handleClose = () => {
     setOpen(false);
   };
   const handleToggle = () => {
     setOpen(!open);
   };
-  useEffect(() =>{fetch('https://planets.pythonanywhere.com/houses/6/').then((response) => response.json()).then((data) => setData(data))},[])
+  useEffect(() =>{if (router.isReady) (fetch(url).then((response) => response.json()).then((data) => setData(data)))},[router.isReady])
     {
       return(
         <div>
+
         <div class="relative h-10 w-10 p-8"><div class="absolute left-0 top-0 h-2 w-2 pl-4 pt-5">
         <Link href="/homes"><input type="image" src="/icons/icons8-back-arrow-30.png" alt="star"></input></Link></div>
         </div>
@@ -55,7 +63,7 @@ function HouseSix(){
         <div className="flex flex-row justify-center items-center relative">
         <Paper className="flex flex-row justify-center items-center relative" elevation={0} sx={{width: '100%', height: 'auto', maxWidth: '1000px'}}> 
         <div>
-        <Image src="/houseSix/homeSix.webp" alt="image1" className="rounded-lg" width={1000} height={500} maxWidth={1000}/>
+        <Image src={data.home_img} alt="image1" className="rounded-lg" width={1000} maxWidth={1000} height={500}/>
         <div class="absolute bottom-0 right-0 bg-white text-white p-2 rounded m-2"><HousePhotosModal/></div>
         </div>
         </Paper>
@@ -69,7 +77,7 @@ function HouseSix(){
         <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2}>
         <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
         <CardContent>
-        <div className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire home hosted by Homestead Modern</div>
+        <div className="text-2xl text-medium text-left" style={{marginBottom: '10px'}}>Entire villa hosted by Sherry</div>
         <Stack direction="row" alignItems="center" className="space-x-2">
         <div className="text-medium text-left">{data.maxGuests} guests</div>
         <FiberManualRecordIcon sx={{color: '#121212', backgroundColor: 'a9a9a9', fontSize: '5px'}}/>
@@ -81,14 +89,14 @@ function HouseSix(){
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <div className="space-y-6">
-        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+          <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2} >
         <Image src='/icons/icons8-home-office-25.png' alt="home office" className="text-left max-w-full h-full" width={25} height={25} maxWidth={25}/><div>Dedicated workspace</div>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
         <Image src='/icons/icons8-open-door-25.png' alt="open door" className="text-center max-w-full h-full" width={25} height={25} maxWidth={25}/><div>Self check-in</div>
         </Stack>
         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-        <Image src='/icons/icons8-gold-medal-25.png' alt="important month" className="text-center max-w-full h-full" width={25} height={25} maxWidth={25}/><div>Homestead Modern is a Superhost</div>
+        <Image src='/icons/icons8-important-month-25.png' alt="important month" className="text-center max-w-full h-full" width={25} height={25} maxWidth={25}/><div>Free cancellation</div>
         </Stack>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         <Paper elevation={0} sx={{width: '100%', maxWidth: '1000px', height: 'auto', margin: 'auto'}}>
@@ -96,7 +104,7 @@ function HouseSix(){
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9', marginTop: '20px', marginBottom: '20px'}} orientation="horizontal" flexItem/>
         </Paper>
         </div>
-        <div className="pt-5"> 
+        <div className="pt-5">  
         <Paper elevation={0}  sx={{maxWidth: '1000px'}}>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
         <Image src="/icons/icons8-star-filled-20.png" alt="star" width={20} height={20} maxWidth={20}/><div className="text-lg">{data.ratings}</div>
@@ -114,8 +122,8 @@ function HouseSix(){
         <div>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker label="Start Date" id="start_date" disablePast={true} className="pb-5" />
-        <DatePicker label="End Date"  id="end_date" disablePast={true} minDate={tomorrow} className="pb-5" />
+        <DatePicker label="Start Date" id="start_date" disablePast={true}  className="pb-5" />
+        <DatePicker label="End Date"  id="end_date" disablePast={true}  minDate={tomorrow} className="pb-5" />
         </LocalizationProvider>
         </Stack>
         <button onClick={handleToggle} className="text-white bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-br rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-80">Reserve</button>
@@ -127,29 +135,32 @@ function HouseSix(){
         </Box>
         </Backdrop>
         </div>
-        <div className="text-center font-small text-stone-800">Fees</div>
+        <div className="text-center font-small text-stone-800 ">Fees</div>
         </div>
         <div className="flex space-x-28">
-        <div className="text-black font-light text-center text-decoration-line: underline"><NightFeesModal/></div>
-        <div className="text-black text-medium">$6,415</div>
+        <div className="text-black font-light	text-center text-decoration-line: underline"><NightFeesModal/></div>
+        <div className="text-black text-medium">$7,013</div>
         </div>
         <div className="flex space-x-40">
-        <div className="text-black text-center text-decoration-line: underline"><CleaningFeesModal/></div>
-        <div className="text-black text-medium" style={{marginLeft: '155px'}}>$400</div>
+        <div className="text-black	text-center text-decoration-line: underline"><CleaningFeesModal/></div>
+        <div className="text-black text-medium">$375</div>
         </div><div className="flex space-x-40">
-        <div className="text-black font-light text-center text-decoration-line: underline"><ServiceFeeModal/></div>
-        <div className="text-black text-medium" style={{marginLeft: '167px'}}>$419</div>
+        <div className="text-black font-light	text-center text-decoration-line: underline"><ServiceFeeModal/></div>
+        <div className="text-black text-medium">$1,043</div>
         </div>
         <Divider sx={{color: '#a9a9a9', backgroundColor: 'a9a9a9'}} orientation="horizontal" flexItem/>
         <div className="flex">
         <div className="text-black text-center font-semibold">Total before taxes</div>
-        <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$7,234</div>
+        <div className="text-black font-semibold" style={{marginLeft: '105px'}}>$8,431</div>
         </div>
         </Paper>
         </Grid>
         </Stack>
+    
+        
         </div>  
-      )
+
+      )  
 }
 }
   
@@ -203,31 +214,32 @@ const pictureBox = {
   p: 4, 
 }
 const itemData = [
-    {
-      img: '/houseSix/homeSix.webp',
-      title: 'View of the Mountains',
-      featured: true,
-  
-  
-    },
-    {
-      img: '/houseSix/1.webp',
-      title: 'Interior',
-  
-    },
-    {
-      img: '/houseSix/2.webp',
-      title: 'Kitchen',
-  
-    },
-    {
-      img: '/houseSix/3.webp',
-      title: 'Bedroom',
-      featured: true,
-      
-    }
+  {
+    img: '/houseOne/homeOne.webp',
+    title: 'Exterior',
+    featured: true,
+
+
+  },
+  {
+    img: '/houseOne/1.webp',
+    title: 'Overhead View',
+
+  },
+  {
+    img: '/houseOne/2.webp',
+    title: 'Lake View',
+
+  },
+  {
+    img: '/houseOne/3.webp',
+    title: 'Lake View 2',
+    featured: true,
+    
+  }
 ]
 const tomorrow = dayjs().add(1, 'day');
+
 
 const srcset = (image, width, height, rows = 1, cols = 1) =>{
   return {
@@ -276,11 +288,11 @@ const NightFeesModal = () => {
   
     return (
       <div>
-        <button className="text-decoration-line: underline" onClick={handleOpen} theme={theme} color="neutral">$1,283 x 5 nights</button>
+        <button className="text-decoration-line: underline" onClick={handleOpen} theme={theme} color="neutral">$1,409 x 5 nights</button>
         <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
           <Box sx={style} >
             <div className="space-y-6">
-            <div className="text-center" sx={{ mt: 2 }}>Minimum Nights: $6,415
+            <div className="text-center" sx={{ mt: 2 }}>Minimum Nights: $7,013
             <div className="text-center" sx={{ mt: 2 }}>Homes are able to declare a minimum stay on their homes. The minimum night fee is the base per night fee, multplied by the specified minimum number of nights.</div></div>
             </div>
           </Box>
@@ -300,7 +312,7 @@ const CleaningFeesModal = () =>{
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
         <Box sx={style} >
           <div className="space-y-6">
-          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $400
+          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $375
           <div className="text-center" sx={{ mt: 2 }}>One-time fee charged by host to cover the cost of cleaning their space.</div></div>
           </div>
         </Box>
@@ -320,7 +332,7 @@ const ServiceFeeModal = () =>{
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" >
         <Box sx={style} >
           <div className="space-y-6">
-          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $419
+          <div className="text-center" sx={{ mt: 2 }}>Cleaning Fee: $1,043
           <div className="text-center" sx={{ mt: 2 }}>This helps us run our platform and offer services like 24/7 support on your trip.</div></div>
           </div>
         </Box>
@@ -341,9 +353,9 @@ const ReviewsModal = () =>{
         <Box sx={style}>
           <div className="grid grid-cols-1">
           <Stack direction="row" spacing={2}>
-          <Avatar>J</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Jacob<br></br><div className="opacity-75">April 2023</div></div>
+          <Avatar>D</Avatar><div style={{justifyContent:"flex-start", alignItems:"center", fontSize: '14px'}}>Donovan<br></br><div className="opacity-75">April 2023</div></div>
           </Stack>
-          <div className="pt-4">We had a very good experience, the area and natural surroundings are so peaceful and magical, you feel like you're in a different dimension. Homestead Modern was very responsive. The place was so intact, no assistance was needed during our stay. I highly recommend this place for anyone who wants to connect with the natural wonders of Gods creation.</div>
+          <div className="pt-4">Amazing stay, definetly enjoyed it here!</div>
           </div>
         </Box>
       </Modal>
@@ -358,7 +370,7 @@ const HousePhotosModal = () => {
 
   return(
     <div className="overflow-hidden">
-      <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><Image src="/icons/icons8-grid-view-22.png" className="" width={22} height={22} maxWidth={22}/>Show all photos</Button>
+      <Button className=" font-normal flex" onClick={handleOpen} theme={theme} color="primary" sx={{textTransform: "none"}}><Image src="/icons/icons8-grid-view-22.png" className="" width={22} maxWidth={22} height={22}/>Show all photos</Button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title">
         <Box elevation={0} sx={pictureBox}>
           <div className="grid grid-cols-1 divide-y overflow-hidden">
@@ -382,9 +394,9 @@ const FullHomeDescription = () =>{
           <Box sx={descriptionStyle}>
             <div className="grid grid-cols-1 space-y-4">
             <div className="text-left text-2xl font-semibold" sx={{ mt: 2 }}>About this space</div>
-            <div className="text-left" sx={{ mt: 2 }}>One of the most iconic architectural gems in the High Desert is now available for guests. Placed among boulders as if it landed at night, Oller & Pejic Architecture’s Black Desert House sits on a secluded perch in one of the area’s most exclusive neighborhoods. Overlooking 440 private acres with landscape that rivals any location in the Joshua Tree National Park, the Black Desert House is a luxury oasis with hot tub and heated pool that remains connected to the elemental rawness of the desert.</div>
+            <div className="text-left" sx={{ mt: 2 }}>Reverse pandemic blues at this retreat charged 4 bedroom haven with an authentic Finnish sauna, canal-front jacuzzi consciousness, paddleboards, a tandem kayak, replete comfy zones to lazily exchange conversation. The tranquility of the canal will replace all Debbie downer thoughts with a symphony of luminous relaxation, bound to bedazzle wary minds and hearts.</div>
             <div className="text-left text-xl font-semibold" sx={{ mt: 2}}>The space</div>
-            <div className="text-left text-medium" sx={{ mt: 2 }}>Brought to life by Oller & Pejic Architecture, this iconic home presents a contrast between clean, modern lines and the rugged desert landscape. Enter via the gated driveway to find the striking black facade welcoming you. Walk up the stairs to the courtyard featuring a mature olive tree, and let the magic reveal itself to you.</div>
+            <div className="text-left text-medium" sx={{ mt: 2 }}>Tastefully furnished on the inside, this villa features 4 bedrooms with king or queen size beds, 2.5 bathrooms, two tuned grand pianos for dueling it out, and within a few minute paddle to the bay. After a few hours here you’ll forget about any invisible enemy that has destroyed the basic hug! Great for team building and corporate or family retreats! No parties allowed. Long-term rental an option.</div>
             </div>
           </Box>
         </Modal>
@@ -392,4 +404,4 @@ const FullHomeDescription = () =>{
     );
 }
 
-export default houseSix
+export default houseOne
