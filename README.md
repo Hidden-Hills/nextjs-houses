@@ -3,7 +3,7 @@ Airbnb Mockup
 Stack Used
 - MongoDB
 - Django
-- Next.js & TailwindCSS
+- Next.js, TailwindCSS, and MUI
 - Node.js
 
-Contains 8 homes from Airbnb's California listings.
+Contains homes from Airbnb's California listings.
