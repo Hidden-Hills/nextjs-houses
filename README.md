@@ -1,5 +1,7 @@
 Airbnb Mockup
 
+I picked up NextJS & TailwindCSS about 3 weeks ago specifically for this project.
+
 Stack Used
 - MongoDB
 - Django
