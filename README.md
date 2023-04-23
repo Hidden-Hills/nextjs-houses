@@ -1,6 +1,6 @@
 Airbnb Mockup
 
-I picked up NextJS & TailwindCSS about 3 weeks ago specifically for this project.
+I picked up NextJS & TailwindCSS about 3 weeks ago [03/27/2023 - 04/07/2023] specifically for this project.
 
 Stack Used
 - MongoDB
